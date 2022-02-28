@@ -9,16 +9,10 @@ const saltRounds = 10
 
 router.post('/register', (req, res) => {
 
-    const { email, password, username, userName, userSurname, imageURL } = req.body
+    const { email, password, username, nameUser, surnameUser, imageURL } = req.body
 
-    if (email === '' || password === '' || username === '' || userName === '' || userSurname || imageURL === '') {
+    if (email === '' || password === '' || username === '' || nameUser === '' || surnameUser === '') {
         res.status(400).json({ message: 'Se requiere email, contraseña, nombre de usuario y nombre completo' })
-        return
-    }
-
-    const emailRegex = /^\S+@\S+\.\S+$/
-    if (emailRegex.test(email)) {
-        res.status(400).json({ message: 'Se requiere una cuenta de email válida' })
         return
     }
 
@@ -30,18 +24,16 @@ router.post('/register', (req, res) => {
     User
         .findOne({ email })
         .then((foundUser) => {
-
-            if (!foundUser) {
+            if (foundUser) {
                 res.status(401).json({ message: 'Usuari@ ya existente' })
                 return
             }
-
             const salt = bcrypt.genSaltSync(saltRounds)
             const hashedPassword = bcrypt.hashSync(password, salt)
-            return User.create({ email, password: hashedPassword, username, userName, userSurname })
+            return User.create({ email, password: hashedPassword, username, nameUser, surnameUser })
                 .then((createdUser) => {
-                    const { email, username, userName, userSurname, password, _id } = createdUser
-                    const user = { email, username, userName, userSurname, password, _id }
+                    const { email, username, nameUser, surnameUser, password, _id } = createdUser
+                    const user = { email, username, nameUser, surnameUser, password, _id }
                     res.status(201).json({ user })
                 })
                 .catch(err => {
@@ -60,7 +52,7 @@ router.post('/login', (req, res) => {
     }
 
     User
-        .findOne({ emai })
+        .findOne({ email })
         .then(foundUser => {
 
             if (!foundUser) {
@@ -84,7 +76,6 @@ router.post('/login', (req, res) => {
             console.log(err)
             res.status(500).json({ message: 'Error interno del servidor' })
         })
-
 })
 
 module.exports = router
