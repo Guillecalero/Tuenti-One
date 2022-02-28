@@ -1,15 +1,14 @@
-const express = require('express')
+const router = require('express').Router()
 const bcrypt = require('bcryptjs')
 const User = require('../models/User.model')
 const jwt = require('jsonwebtoken')
-//const { isAuthenticated } = require('./../middlewares/jwt.middleware')
+const { isAuthenticated } = require('../middlewares/jwt.middleware')
 
-const router = express.Router()
 const saltRounds = 10
 
 router.post('/register', (req, res) => {
 
-    const { email, password, username, nameUser, surnameUser, imageURL } = req.body
+    const { email, password, username, nameUser, surnameUser, imageURL, birthday } = req.body
 
     if (email === '' || password === '' || username === '' || nameUser === '' || surnameUser === '') {
         res.status(400).json({ message: 'Se requiere email, contraseña, nombre de usuario y nombre completo' })
@@ -30,10 +29,10 @@ router.post('/register', (req, res) => {
             }
             const salt = bcrypt.genSaltSync(saltRounds)
             const hashedPassword = bcrypt.hashSync(password, salt)
-            return User.create({ email, password: hashedPassword, username, nameUser, surnameUser })
+            return User.create({ email, password: hashedPassword, username, nameUser, surnameUser, imageURL, birthday })
                 .then((createdUser) => {
-                    const { email, username, nameUser, surnameUser, password, _id } = createdUser
-                    const user = { email, username, nameUser, surnameUser, password, _id }
+                    const { email, username, nameUser, surnameUser, password, birthday, _id } = createdUser
+                    const user = { email, username, nameUser, surnameUser, password, birthday, _id }
                     res.status(201).json({ user })
                 })
                 .catch(err => {
@@ -76,6 +75,10 @@ router.post('/login', (req, res) => {
             console.log(err)
             res.status(500).json({ message: 'Error interno del servidor' })
         })
+})
+
+router.get('/verify', isAuthenticated, (req, res, next) => {
+    res.status(200).json(req.payload)
 })
 
 module.exports = router
