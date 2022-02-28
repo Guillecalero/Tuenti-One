@@ -34,7 +34,7 @@ const RegisterForm = () => {
             </Form.Group>
 
 
-            <Button type='submit' className='btn btn-primary'>Enviar</Button>
+            <Button type='submitt' className='btn btn-primary'>Enviar</Button>
         </Form>
     )
 }
