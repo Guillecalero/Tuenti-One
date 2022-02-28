@@ -46,6 +46,9 @@ const userSchema = new Schema(
     biography: {
       type: String,
       maxlength: 250
+    },
+    birthday: {
+      type: Date
     }
   },
 
