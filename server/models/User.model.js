@@ -33,12 +33,12 @@ const userSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'User'
     }],
-    name: {
+    userName: {
       type: String,
       maxlength: 40,
       required: true
     },
-    surname: {
+    userSurname: {
       type: String,
       maxlength: 40,
       required: true
