@@ -29,21 +29,19 @@ const userSchema = new Schema(
       enum: ['USER', 'ADMIN'],
       default: 'USER'
     },
-    friends: {
-      type: [String],
-    },
+    friends: [{
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    }],
     fullName: {
       type: String,
       maxlength: 40,
-      validate: /[a-z]/gis
+      required: true
     },
     biography: {
       type: String,
       maxlength: 250
-    },
-    posts: {
-      type: [String],
-    },
+    }
   },
 
   {

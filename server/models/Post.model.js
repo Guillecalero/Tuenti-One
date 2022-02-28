@@ -6,20 +6,21 @@ const postSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: 'User'
         },
-        Date: {
+        date: {
             type: Date,
             default: Date.now
         },
-        state: {
+        status: {
             type: String,
             maxlength: 250,
         },
-        imageUrl: {
+        imageURL: {
             type: String,
         },
-        comments: {
-            type: [String]
-        }
+        comments: [{
+            type: Schema.Types.ObjectId,
+            ref: 'Comment'
+        }]
     },
 
     {
