@@ -24,6 +24,7 @@ class AuthService {
         return this.axios.post('/login', info)
     }
 
+
     verify(token) {
         return this.axios.get('/verify', { headers: { Authorization: `Bearer ${token}` } })
     }
