@@ -1,19 +1,21 @@
-import React from "react";
-import { Context } from "react";
+import { useContext } from "react";
+import { AuthContext } from '../../context/auth.context'
 
 const ProfilePage = () => {
+
+    const { user } = useContext(AuthContext)
 
     return (
 
         <div>
 
-            <img src='' alt="imagen de usuari@" />
-            <h3>Nombre de usuario </h3>
-            <p>Email </p>
-            <p>Nombre </p>
-            <p>Apellidos </p>
-            <p>Biografía</p>
-            <p>Cumpleaños</p>
+            <img src={user?.imageURL} alt="imagen de usuari@" />
+            <h3>Nombre de usuario {user?.username} </h3>
+            <p>Email {user?.email} </p>
+            <p>Nombre {user?.nameUser} </p>
+            <p>Apellidos {user?.surName} </p>
+            <p>Biografía {user?.biography} </p>
+            <p>Cumpleaños {user?.birthday}</p>
 
         </div>
     )
