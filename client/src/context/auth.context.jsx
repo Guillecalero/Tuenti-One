@@ -1,6 +1,7 @@
 import React, { createContext, useState } from 'react'
 import { useEffect } from 'react';
 import authService from '../services/auth.service';
+import ProfilePage from '../pages/ProfilePage/ProfilePage';
 
 
 const AuthContext = createContext()
@@ -58,6 +59,8 @@ function AuthProviderWrapper(props) {
             {props.children}
         </AuthContext.Provider>
     )
+
+
 }
 
 export { AuthContext, AuthProviderWrapper };
