@@ -31,7 +31,6 @@ const LoginForm = () => {
         authService
             .login(loginForm)
             .then(({ data }) => {
-                console.log(data)
                 storeToken(data.authToken)
                 authenticateUser()
                 navigate('/home')
