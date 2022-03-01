@@ -30,7 +30,7 @@ const NavBar = () => {
                             {
                                 !isLoggedIn ?
                                     <>
-                                        <Link to='/login'>
+                                        <Link to='/'>
                                             <p className="nav-link">Iniciar sesión</p>
                                         </Link>
                                         <Link to='/registro'>
