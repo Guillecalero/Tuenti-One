@@ -110,7 +110,6 @@ const RegisterForm = () => {
                     value={registerForm.birthday}
                     onChange={handleInputChange}
                     placeholder='Contraseña'
-                    required
                 />
             </Form.Group>
 
