@@ -28,8 +28,6 @@ function AuthProviderWrapper(props) {
 
         const storedToken = getToken()
 
-        console.log("token", storedToken)
-
         if (!storedToken) {
             logOutUser()
         } else {

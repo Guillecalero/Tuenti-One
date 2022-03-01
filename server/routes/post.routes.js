@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const { isAuthenticated } = require('../middlewares/jwt.middleware')
 const POSTS = require('../models/Post.model')
 
 router.get('/', (req, res) => {
@@ -8,9 +9,12 @@ router.get('/', (req, res) => {
         .catch(err => res.status(400).json(err))
 })
 
-router.post('/neww-postt', (req, res) => {
+router.post('/neww-postt', isAuthenticated, (req, res) => {
+
+    const newPost = { ...req.body, user: req.payload._id }
+
     POSTS
-        .create(req.body)
+        .create(newPost)
         .then(data => res.json(data))
         .catch(err => res.status(400).json(err))
 })
