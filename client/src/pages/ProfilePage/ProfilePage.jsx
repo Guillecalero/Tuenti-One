@@ -13,11 +13,12 @@ const ProfilePage = () => {
             <h3>Nombre de usuario {user?.username} </h3>
             <p>Email {user?.email} </p>
             <p>Nombre {user?.nameUser} </p>
-            <p>Apellidos {user?.surName} </p>
+            <p>Apellidos {user?.surnameUser} </p>
             <p>Biografía {user?.biography} </p>
             <p>Cumpleaños {user?.birthday}</p>
 
         </div>
+
     )
 
 }
