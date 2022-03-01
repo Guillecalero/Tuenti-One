@@ -59,8 +59,8 @@ router.post('/login', (req, res) => {
                 res.status(401).json({ message: 'Usuario no encontrado.' })
             }
             if (bcrypt.compareSync(password, foundUser.password)) {
-                const { _id, email, password } = foundUser
-                const payload = { _id, email, password }
+                const { _id, email, password, username } = foundUser
+                const payload = { _id, email, password, username }
                 const authToken = jwt.sign(
                     payload,
                     process.env.TOKEN_SECRET,
