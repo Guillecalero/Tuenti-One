@@ -45,6 +45,7 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res) => {
     const { email, password } = req.body
 
+
     if (email === '' || password === '') {
         res.status(400).json({ message: 'Introduce un correo y contraseña.' })
         return
@@ -65,7 +66,7 @@ router.post('/login', (req, res) => {
                     process.env.TOKEN_SECRET,
                     { algorithm: 'HS256', expiresIn: '6h' }
                 )
-                res.status(401).json({ authToken })
+                res.status(200).json({ authToken })
             }
             else {
                 res.status(401).json({ message: 'No se ha podido autenticar al usuari@' })
