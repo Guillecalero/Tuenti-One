@@ -28,6 +28,9 @@ class PosteosService {
     deleteOnePost(id) {
         return this.axios.delete(`/${id}/delete-post`)
     }
+    addNewComment(id, info) {
+        return this.axios.post(`/${id}/push-comment`, info)
+    }
 }
 
 const posteosService = new PosteosService()

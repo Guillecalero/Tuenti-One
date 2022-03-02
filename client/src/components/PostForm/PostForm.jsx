@@ -69,6 +69,7 @@ const Posteos = () => {
                         value={postStatus.status}
                         onChange={handleInputChange}
                         name="status"
+                        required
                     />
                 </Form.Group>
 

@@ -52,7 +52,7 @@ const RegisterForm = () => {
         authService
             .register(registerForm)
             .then(() => {
-                navigate('/login')
+                navigate('/')
             })
             .catch(err => console.log(err))
     }
