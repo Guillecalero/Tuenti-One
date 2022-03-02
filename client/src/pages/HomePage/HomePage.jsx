@@ -1,4 +1,5 @@
-import Posteos from "../../components/Postes/Postes"
+import Posteos from "../../components/PostForm/PostForm"
+import PostList from "../../components/PostList/PostList"
 
 const HomePage = () => {
 
@@ -6,6 +7,8 @@ const HomePage = () => {
         <>
             <h1>Homepage</h1>
             <Posteos />
+            <hr />
+            <PostList />
         </>
     )
 }
