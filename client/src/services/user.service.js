@@ -6,8 +6,8 @@ class UserService {
 
     }
 
-    getOneUser() {
-        return this.axios.get('/')
+    getOneUser(id) {
+        return this.axios.get(`/${id}`)
     }
 
     editProfileUser(id, info) {

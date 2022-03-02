@@ -13,7 +13,7 @@ const AppRoutes = () => {
             <Route path='/registro' element={<RegisterPage />} />
             <Route path='/' element={<LoginPage /> /*Login page as the main page*/} />
             <Route path='/perfil' element={<ProfilePage />} />
-            <Route path='/editar' element={<ProfilePageEdit />} />
+            <Route path='/:id/editar' element={<ProfilePageEdit />} />
 
         </Routes>
     )
