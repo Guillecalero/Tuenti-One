@@ -10,6 +10,8 @@ router.use('/comment', require('./comment.routes'))
 
 router.use('/user', require('./user.routes'))
 
+router.use('/upload', require('./upload.routes'))
+
 
 // You put the next routes here 👇
 // example: router.use("/auth", authRoutes)

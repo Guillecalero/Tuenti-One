@@ -1,22 +1,13 @@
-import { useContext } from 'react'
-import { ReloadContext } from '../../context/loadPage.context'
+import EachPost from "../EachPost/EachPost"
 
-const PostList = () => {
-
-    const { loadPost } = useContext(ReloadContext)
+const PostList = ({ loadPost, reloadPage }) => {
 
     return (
         <>
             <h1>lista de posts</h1>
             {
-                loadPost.reverse().map(eachPost => {
-                    return <div key={eachPost._id}>
-                        <p>{eachPost.user}</p>
-                        <p>{eachPost.date.slice(0, 10)}</p>
-                        <p>{eachPost.status}</p>
-                        {eachPost.imageURL !== '' ? <img src={eachPost.imageURL} alt='post image' /> : <p></p>}
-                        <hr />
-                    </div>
+                loadPost.reverse().map((eachPost, idx) => {
+                    return <EachPost key={idx} eachPost={eachPost} reloadPage={reloadPage} />
                 })
             }
         </>
