@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Button, Form, InputGroup } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
-import authService from '../../services/auth.service'
+import userService from "../../services/user.service"
 
 
 const ProfilePageEdit = () => {
@@ -13,7 +13,6 @@ const ProfilePageEdit = () => {
             surnameUser: '',
             email: '',
             password: '',
-            birthday: '',
             imageURL: ''
         }
     )
@@ -31,10 +30,11 @@ const ProfilePageEdit = () => {
     const handleSubmit = e => {
         e.preventDefault()
 
-        authService
-            .register(registerForm)
+        //TODO coger del contexto de Auth el objeto usuario y coger su id
+        userService
+            .editProfileUser(registerForm)
             .then(() => {
-                navigate('/login')
+                navigate('/perfil')
             })
             .catch(err => console.log(err))
     }

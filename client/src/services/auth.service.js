@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { AuthContext } from '../context/auth.context';
 
 class AuthService {
     constructor() {
@@ -23,7 +24,6 @@ class AuthService {
     login(info) {
         return this.axios.post('/login', info)
     }
-
 
     verify(token) {
         return this.axios.get('/verify', { headers: { Authorization: `Bearer ${token}` } })
