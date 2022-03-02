@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const { isAuthenticated } = require('../middlewares/jwt.middleware')
 const POSTS = require('../models/Post.model')
+const Comment = require('../models/Comment.model')
 
 router.get('/', (req, res) => {
     POSTS
