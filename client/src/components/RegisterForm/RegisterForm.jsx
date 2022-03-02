@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Button, Form, InputGroup } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import authService from '../../services/auth.service'
+import uploadService from '../../services/upload.service'
 
 const RegisterForm = () => {
 
@@ -17,6 +18,8 @@ const RegisterForm = () => {
         }
     )
 
+    const [loadingImage, setLoadingImage] = useState(false)
+
     const navigate = useNavigate()
 
     const handleInputChange = e => {
@@ -25,6 +28,22 @@ const RegisterForm = () => {
             ...registerForm,
             [name]: value
         })
+    }
+
+    const uploadProfileImage = e => {
+
+        setLoadingImage(true)
+
+        const uploadData = new FormData()
+        uploadData.append('imageURL', e.target.files[0])
+
+        uploadService
+            .uploadImage(uploadData)
+            .then(({ data }) => {
+                setLoadingImage(false)
+                setRegisterForm({ ...registerForm, imageURL: data.cloudinary_url })
+            })
+            .catch(err => console.log(err))
     }
 
     const handleSubmit = e => {
@@ -113,17 +132,12 @@ const RegisterForm = () => {
                 />
             </Form.Group>
 
-            <Form.Group className='mb-3'>
-                <Form.Label>Foto de perfil:</Form.Label>
-                <Form.Control
-                    type='file'
-                    name='imageURL'
-                    onChange={handleInputChange}
-                    value={registerForm.imageURL}
-                />
+            <Form.Group controlId="coasterImage" className="mb-3">
+                <Form.Control type="file" onChange={uploadProfileImage} />
             </Form.Group>
 
-            <Button type='submit' className='btn btn-primary'>Enviar</Button>
+            <button className="btn btn-primary" type="submit" disabled={loadingImage}>{loadingImage ? 'Espere...' : 'Enviar'}</button>
+
 
         </Form>
     )

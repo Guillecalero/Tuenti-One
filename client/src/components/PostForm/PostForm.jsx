@@ -2,6 +2,7 @@ import { useContext, useState } from "react"
 import { Form } from "react-bootstrap"
 import posteosService from "../../services/posteos.service"
 import { ReloadContext } from '../../context/loadPage.context'
+import uploadService from "../../services/upload.service"
 
 const Posteos = () => {
 
@@ -12,6 +13,7 @@ const Posteos = () => {
 
     const { reloadPage } = useContext(ReloadContext)
 
+    const [loadingImage, setLoadingImage] = useState(false)
 
     const handleInputChange = e => {
         const { name, value } = e.target
@@ -22,12 +24,28 @@ const Posteos = () => {
         })
     }
 
+    const uploadPostImage = e => {
+
+        setLoadingImage(true)
+
+        const uploadData = new FormData()
+        uploadData.append('imageURL', e.target.files[0])
+
+        uploadService
+            .uploadImage(uploadData)
+            .then(({ data }) => {
+                setLoadingImage(false)
+                setPostStatus({ ...postStatus, imageURL: data.cloudinary_url })
+            })
+            .catch(err => console.log(err))
+    }
+
     const handleSubmit = e => {
         e.preventDefault()
 
         posteosService
             .createOnePost(postStatus)
-            .then(({ data }) => {
+            .then(() => {
                 reloadPage()
             })
             .catch(err => console.log(err))
@@ -44,7 +62,6 @@ const Posteos = () => {
             <h1>Posteooo</h1>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                    <Form.Label>Example textarea</Form.Label>
                     <Form.Control
                         className="mb-3"
                         type="text"
@@ -55,17 +72,11 @@ const Posteos = () => {
                     />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                    <Form.Control
-                        className="mb-3"
-                        type="file"
-                        value={postStatus.imageURL}
-                        onChange={handleInputChange}
-                        name="imageURL"
-                    />
+                <Form.Group controlId="coasterImage" className="mb-3">
+                    <Form.Control type="file" onChange={uploadPostImage} />
                 </Form.Group>
 
-                <button className="btn btn-danger" type="submit">Publicar</button>
+                <button className="btn btn-primary" type="submit" disabled={loadingImage}>{loadingImage ? 'Espere...' : 'Enviar'}</button>
 
             </Form>
         </>

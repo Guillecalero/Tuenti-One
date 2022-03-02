@@ -25,8 +25,8 @@ class PosteosService {
     editOnePost(id, info) {
         return this.axios.put(`/${id}/edit-post`, info)
     }
-    deleteOnePost(id, info) {
-        return this.axios.delete(`/${id}/delete-post`, info)
+    deleteOnePost(id) {
+        return this.axios.delete(`/${id}/delete-post`)
     }
 }
 
