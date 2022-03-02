@@ -9,8 +9,8 @@ const ProfilePage = () => {
 
         <div>
 
-            <img src={user?.imageURL} alt="imagen de usuari@" />
             <h3>Nombre de usuario {user?.username} </h3>
+            <img src={user?.imageURL} alt="imagen de usuari@" />
             <p>Email {user?.email} </p>
             <p>Nombre {user?.nameUser} </p>
             <p>Apellidos {user?.surnameUser} </p>

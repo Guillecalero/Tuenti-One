@@ -14,6 +14,10 @@ class UserService {
         return this.axios.put(`/${id}/edit-profile`, info)
     }
 
+    getAllUsers() {
+        return this.axios.get('/')
+    }
+
 }
 
 const userService = new UserService()

@@ -4,6 +4,7 @@ import LoginPage from '../pages/LoginPage/LoginPage'
 import ProfilePage from '../pages/ProfilePage/ProfilePage'
 import HomePage from '../pages/HomePage/HomePage'
 import ProfilePageEdit from '../pages/ProfilePageEdit/ProfilePageEdit'
+import DiscoverPage from '../pages/DiscoverPage/DiscoverPage'
 
 const AppRoutes = () => {
     return (
@@ -14,6 +15,7 @@ const AppRoutes = () => {
             <Route path='/' element={<LoginPage /> /*Login page as the main page*/} />
             <Route path='/perfil' element={<ProfilePage />} />
             <Route path='/:id/editar' element={<ProfilePageEdit />} />
+            <Route path='/discover' element={<DiscoverPage />} />
 
         </Routes>
     )

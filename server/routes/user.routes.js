@@ -19,4 +19,14 @@ router.put('/:id/edit-profile', (req, res) => {
         .catch(err => res.status(400).json(err))
 })
 
+router.get('/', (req, res) => {
+
+    User
+        .find()
+        .then(data => res.json(data))
+        .catch(err => res.status(400).json(err))
+})
+
+
+
 module.exports = router

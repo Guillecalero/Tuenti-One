@@ -36,6 +36,7 @@ const NavBar = () => {
                                         <Link to='/registro'>
                                             <p className="nav-link">Registro</p>
                                         </Link>
+
                                     </>
                                     :
                                     <>
