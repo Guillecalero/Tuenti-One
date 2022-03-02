@@ -1,17 +1,16 @@
-import { useEffect } from "react"
-import { useContext } from "react"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { Form } from "react-bootstrap"
 import posteosService from "../../services/posteos.service"
-import { AuthContext } from "../../context/auth.context"
+import { ReloadContext } from '../../context/loadPage.context'
 
 const Posteos = () => {
 
-    const { user } = useContext(AuthContext)
     const [postStatus, setPostStatus] = useState({
         status: '',
         imageURL: ''
     })
+
+    const { reloadPage } = useContext(ReloadContext)
 
 
     const handleInputChange = e => {
@@ -29,7 +28,7 @@ const Posteos = () => {
         posteosService
             .createOnePost(postStatus)
             .then(({ data }) => {
-                console.log(data);
+                reloadPage()
             })
             .catch(err => console.log(err))
 

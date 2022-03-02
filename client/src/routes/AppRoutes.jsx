@@ -11,8 +11,7 @@ const AppRoutes = () => {
 
             <Route path='/home' element={<HomePage />} />
             <Route path='/registro' element={<RegisterPage />} />
-            {/* Login page as the principal page */}
-            <Route path='/' element={<LoginPage />} />
+            <Route path='/' element={<LoginPage /> /*Login page as the main page*/} />
             <Route path='/perfil' element={<ProfilePage />} />
             <Route path='/editar' element={<ProfilePageEdit />} />
 
