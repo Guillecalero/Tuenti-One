@@ -1,11 +1,15 @@
+import { useState } from "react"
+import { useEffect } from "react"
 import { useContext } from "react"
 import { AuthContext } from "../../context/auth.context"
 import posteosService from "../../services/posteos.service"
+import userService from "../../services/user.service"
 import DropDownComment from "../DropdownComment/DropDownComment"
 
 const EachPost = ({ eachPost, reloadPage }) => {
 
     const { user } = useContext(AuthContext)
+    const [oneUser, setOneUser] = useState([])
 
     const delPost = () => {
         posteosService
@@ -14,6 +18,17 @@ const EachPost = ({ eachPost, reloadPage }) => {
                 reloadPage()
             })
     }
+
+
+
+    const findComentUser = (id) => {
+        userService.getOneUserById(id)
+            .then(({ data }) => {
+                setOneUser(data.username)
+            })
+    }
+
+    useEffect(() => findComentUser(), [])
 
     return (
         <div key={eachPost._id}>
@@ -26,9 +41,9 @@ const EachPost = ({ eachPost, reloadPage }) => {
             <div>
                 {eachPost.comments.map(eachComment => {
                     return <div key={eachComment._id}>
-                        <p>{eachComment.user}</p>
+                        {console.log(typeof findComentUser(eachComment.user))}
                         <p>{eachComment.date}</p>
-                        <p>{eachComment.text}</p>
+                        <p><strong>{eachComment.text}</strong></p>
                     </div>
                 })}
             </div>

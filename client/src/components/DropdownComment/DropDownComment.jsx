@@ -2,11 +2,12 @@ import { useContext, useState } from "react"
 import { Dropdown, DropdownButton, Form } from "react-bootstrap"
 import commentServices from "../../services/comment.service"
 import posteosService from "../../services/posteos.service"
+import { AuthContext } from "../../context/auth.context"
 
 const DropDownComment = ({ postId, reloadPage }) => {
 
     const [postComment, setPostComment] = useState({
-        text: ''
+        text: '',
     })
 
     const [showDropdrown, setShowDropDown] = useState(false)
@@ -24,7 +25,7 @@ const DropDownComment = ({ postId, reloadPage }) => {
 
         commentServices
             .addNewComment(postComment)
-            .then(({ data }) => posteosService.pushNewComment(postId, data))
+            .then(({ data }) => { posteosService.pushNewComment(postId, data) })
             .then(() => {
                 setShowDropDown(false)
                 reloadPage()

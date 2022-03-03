@@ -6,6 +6,10 @@ class UserService {
 
     }
 
+    getOneUserById(id) {
+        return this.axios.get(`/${id}`)
+    }
+
     getOneUser(username) {
         return this.axios.get(`/${username}`)
     }
