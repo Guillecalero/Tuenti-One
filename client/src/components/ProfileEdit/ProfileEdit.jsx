@@ -32,7 +32,6 @@ const ProfilePageEdit = (userId) => {
         userService
             .ProfilePageEdit(userId, ProfilePageEdit)
             .then(({ data }) => {
-                console.log(data, "soy el use nena")
                 setUser({
                     ...user,
                     data

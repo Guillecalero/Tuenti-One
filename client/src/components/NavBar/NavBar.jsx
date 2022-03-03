@@ -20,6 +20,9 @@ const NavBar = () => {
                             </Link>
                             {
                                 isLoggedIn &&
+                                <Link to='/descubrir'>
+                                    <p className="nav-link">Descubrir</p>
+                                </Link> &&
                                 <Link to={`/perfil/${user?.username}`}>
                                     <p className="nav-link">Perfil</p>
                                 </Link>
