@@ -2,7 +2,6 @@ import { useContext } from "react"
 import { AuthContext } from "../../context/auth.context"
 import posteosService from "../../services/posteos.service"
 import DropDownComment from "../DropdownComment/DropDownComment"
-import posteosService from "../../services/posteos.service"
 
 const EachPost = ({ eachPost, reloadPage }) => {
 
