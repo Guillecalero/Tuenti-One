@@ -6,7 +6,12 @@ const Comment = require('../models/Comment.model')
 router.get('/', (req, res) => {
     POSTS
         .find()
-        .then(data => res.json(data))
+        .populate('user')
+        .populate('comments')
+        .then(data => {
+            console.log(data)
+            res.json(data)
+        })
         .catch(err => res.status(400).json(err))
 })
 
@@ -25,6 +30,15 @@ router.put('/:id/edit-post', (req, res) => {
 
     POSTS
         .findByIdAndUpdate(id, req.body)
+        .then(data => res.json(data))
+        .catch(err => res.status(400).json(err))
+})
+
+router.put('/:id/push-comment-post', (req, res) => {
+    const { id } = req.params
+
+    POSTS
+        .findByIdAndUpdate(id, { $push: { comments: req.body } })
         .then(data => res.json(data))
         .catch(err => res.status(400).json(err))
 })

@@ -1,14 +1,13 @@
 import { useContext, useState } from "react"
 import { Dropdown, DropdownButton, Form } from "react-bootstrap"
 import commentServices from "../../services/comment.service"
-import { ReloadContext } from '../../context/loadPage.context'
 import posteosService from "../../services/posteos.service"
 
-const DropDownComment = ({ postId }) => {
+const DropDownComment = ({ postId, reloadPage }) => {
 
     const [postComment, setPostComment] = useState({ text: '' })
 
-    const { reloadPage } = useContext(ReloadContext)
+    const [showDropdrown, setShowDropDown] = useState(false)
 
     const handleInputChange = e => {
         const { name, value } = e.target
@@ -18,22 +17,31 @@ const DropDownComment = ({ postId }) => {
         })
     }
 
-    const handleSubmit = e => {
+    const handleSubmit = (e) => {
         e.preventDefault()
 
         commentServices
             .addNewComment(postComment)
-            .then(({ data }) => {
-                return posteosService.editOnePost(postId, { comments: data })
-            })
+            .then(({ data }) => posteosService.pushNewComment(postId, data))
             .then(() => {
+                setShowDropDown(false)
                 reloadPage()
+                setPostComment({ text: '' })
             })
-        setPostComment({ status: '' })
+    }
+
+    const toggleDropdrown = () => {
+        if (showDropdrown) {
+            setShowDropDown(false)
+        }
+        else {
+            setShowDropDown(true)
+        }
     }
 
     return (
         <DropdownButton
+            onClick={() => toggleDropdrown()}
             variant="outline-secondary"
             title="Comentar"
             id="input-group-dropdown-1"
@@ -44,7 +52,7 @@ const DropDownComment = ({ postId }) => {
                         className="mb-3"
                         type="text"
                         placeholder="Nuevo comentario"
-                        value={postComment.status}
+                        value={postComment.text}
                         onChange={handleInputChange}
                         name="text"
                         required
@@ -52,6 +60,7 @@ const DropDownComment = ({ postId }) => {
                 </Form.Group>
 
                 <Dropdown.Divider />
+
                 <button className="btn btn-primary" type="submit">Enviar</button>
 
             </Form>

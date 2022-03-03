@@ -20,17 +20,21 @@ const EachPost = ({ eachPost, reloadPage }) => {
     return (
         <div key={eachPost._id}>
             <p>post id: {eachPost._id}</p>
-            <p>{eachPost.user}</p>
+            <p>{eachPost.user.username}</p>
             <p>{eachPost.date.slice(0, 10)}</p>
             <p>{eachPost.status}</p>
             {eachPost.imageURL !== '' ? <img src={eachPost.imageURL} alt='post image' /> : <p></p>}
             {eachPost.user && eachPost.user && user?._id === eachPost.user && <button className='btn btn-danger' onClick={delPost}>Eliminar</button>}
             <hr />
             <div>
-                <p>{eachPost.comments.map(elm => elm.text)}</p>
+                {eachPost.comments.map(eachComment => {
+                    return <div key={eachComment._id}>
+                        <p>{eachComment.text}</p>
+                    </div>
+                })}
             </div>
             <hr />
-            <DropDownComment postId={eachPost._id} />
+            <DropDownComment postId={eachPost._id} reloadPage={reloadPage} />
             <hr />
         </div>
     )

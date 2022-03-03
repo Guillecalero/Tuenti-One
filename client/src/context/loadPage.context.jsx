@@ -13,6 +13,7 @@ const LoadPageWrapper = (props) => {
         posteosService
             .getAllPost()
             .then(({ data }) => {
+                console.log('reloadd', data)
                 setLoadPost(data)
             })
             .catch(error => console.log(error))
