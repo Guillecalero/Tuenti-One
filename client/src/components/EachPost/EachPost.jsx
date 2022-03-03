@@ -9,7 +9,7 @@ import DropDownComment from "../DropdownComment/DropDownComment"
 const EachPost = ({ eachPost, reloadPage }) => {
 
     const { user } = useContext(AuthContext)
-    const [oneUser, setOneUser] = useState([])
+    const [oneUser, setOneUser] = useState()
 
     const delPost = () => {
         posteosService
@@ -22,13 +22,13 @@ const EachPost = ({ eachPost, reloadPage }) => {
 
 
     const findComentUser = (id) => {
-        userService.getOneUserById(id)
+        userService
+            .getOneUserById(id)
             .then(({ data }) => {
+                console.log(data)
                 setOneUser(data.username)
             })
     }
-
-    useEffect(() => findComentUser(), [])
 
     return (
         <div key={eachPost._id}>
@@ -41,8 +41,9 @@ const EachPost = ({ eachPost, reloadPage }) => {
             <div>
                 {eachPost.comments.map(eachComment => {
                     return <div key={eachComment._id}>
-                        {console.log(typeof findComentUser(eachComment.user))}
+                        <p>{findComentUser(`${eachComment.user}`)}</p>
                         <p>{eachComment.date}</p>
+                        <p>{oneUser}</p>
                         <p><strong>{eachComment.text}</strong></p>
                     </div>
                 })}

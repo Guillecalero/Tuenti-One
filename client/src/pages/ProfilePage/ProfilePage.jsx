@@ -13,14 +13,15 @@ const ProfilePage = () => {
     useEffect(() => {
         userService
             .getOneUser(username)
-            .then(({ data }) => setUserInfo(data))
+            .then(({ data }) => {
+                setUserInfo(data)
+            })
             .catch(err => console.log(err))
     }, [username])
 
-
     return (
         <div>
-            <h3>Nombre de usuario: {userInfo.username} </h3>
+            <h3>Nombre de usuario: {userInfo?.username} </h3>
             <img src={userInfo.imageURL} alt="imagen de usuari@" />
             <p>Nombre: {userInfo.nameUser} </p>
             <p>Apellidos: {userInfo.surnameUser} </p>
