@@ -18,6 +18,7 @@ const DiscoverPage = () => {
         <>
             {
                 discoverPage.map(eachUser => {
+
                     return <div>
 
                         <img src={eachUser.imageURL} alt="imagen de usuari@" />
