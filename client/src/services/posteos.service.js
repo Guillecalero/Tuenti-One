@@ -34,6 +34,9 @@ class PosteosService {
 =======
 >>>>>>> dada5d8 (added cloudinary and fixed delete post button)
     }
+    addNewComment(id, info) {
+        return this.axios.post(`/${id}/push-comment`, info)
+    }
 }
 
 const posteosService = new PosteosService()
