@@ -1,7 +1,6 @@
 const router = require('express').Router()
 const { isAuthenticated } = require('../middlewares/jwt.middleware')
 const POSTS = require('../models/Post.model')
-const Comment = require('../models/Comment.model')
 
 router.get('/', (req, res) => {
     POSTS
@@ -9,7 +8,6 @@ router.get('/', (req, res) => {
         .populate('user')
         .populate('comments')
         .then(data => {
-            console.log(data)
             res.json(data)
         })
         .catch(err => res.status(400).json(err))

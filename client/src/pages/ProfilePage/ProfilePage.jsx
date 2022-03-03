@@ -27,7 +27,8 @@ const ProfilePage = () => {
             <p>Biografía {userInfo.biography} </p>
             <p>Cumpleaños {userInfo.birthday?.slice(0, 10)}</p>
 
-            <ProfilePageEdit userId={userInfo._id} />
+            {/* <ProfilePageEdit userId={userInfo._id} /> */}
+
         </div>
 
 

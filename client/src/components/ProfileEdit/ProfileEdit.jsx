@@ -34,7 +34,6 @@ const ProfilePageEdit = (userId) => {
         userService
             .editProfileUser(userId, editProfileForm)
             .then(({ data }) => {
-                console.log(data, "soy el use nena")
                 setUser({
                     ...user,
                     data

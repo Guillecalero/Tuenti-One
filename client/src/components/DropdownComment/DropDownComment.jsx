@@ -5,7 +5,9 @@ import posteosService from "../../services/posteos.service"
 
 const DropDownComment = ({ postId, reloadPage }) => {
 
-    const [postComment, setPostComment] = useState({ text: '' })
+    const [postComment, setPostComment] = useState({
+        text: ''
+    })
 
     const [showDropdrown, setShowDropDown] = useState(false)
 

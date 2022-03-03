@@ -17,7 +17,7 @@ const EachPost = ({ eachPost, reloadPage }) => {
 
     return (
         <div key={eachPost._id}>
-            <p>{eachPost.user.username}</p>
+            <p>{eachPost.user?.username}</p>
             <p>{eachPost.date.slice(0, 10)}</p>
             <p>{eachPost.status}</p>
             {eachPost.imageURL !== '' ? <img src={eachPost.imageURL} alt='post image' /> : <p></p>}
@@ -26,6 +26,8 @@ const EachPost = ({ eachPost, reloadPage }) => {
             <div>
                 {eachPost.comments.map(eachComment => {
                     return <div key={eachComment._id}>
+                        <p>{eachComment.user}</p>
+                        <p>{eachComment.date}</p>
                         <p>{eachComment.text}</p>
                     </div>
                 })}

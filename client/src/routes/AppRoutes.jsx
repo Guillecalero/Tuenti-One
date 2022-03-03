@@ -5,6 +5,7 @@ import ProfilePage from '../pages/ProfilePage/ProfilePage'
 import HomePage from '../pages/HomePage/HomePage'
 import ProfilePageEdit from '../pages/ProfilePageEdit/ProfilePageEdit'
 import DiscoverPage from '../pages/DiscoverPage/DiscoverPage'
+import PrivateRoute from './PrivateRoutes'
 
 const AppRoutes = () => {
     return (
@@ -15,7 +16,9 @@ const AppRoutes = () => {
             <Route path='/' element={<LoginPage /> /*Login page as the main page*/} />
             <Route path='/perfil/:username' element={<ProfilePage />} />
             <Route path='/:username/editar' element={<ProfilePageEdit />} />
-            <Route path='/discover' element={<DiscoverPage />} />
+            <Route path="/descubrir" element={<PrivateRoute />}>
+                <Route path='' element={<DiscoverPage />} />
+            </Route>
 
         </Routes>
     )

@@ -15,23 +15,23 @@ const DiscoverPage = () => {
 
     return (
 
-        <>
+        <div className='discoverContainer'>
             {
                 discoverPage.map(eachUser => {
 
-                    return <div>
+                    return <div className='discoverElm' key={eachUser._id}>
 
                         <img src={eachUser.imageURL} alt="imagen de usuari@" />
-                        <hr />
-                        <p>Nombre de usuario: {eachUser.username} </p>
-                        <hr />
-                        <p>Nombre: {eachUser.nameUser} </p>
+                        <div className='discoverSidetext'>
+                            <p>{eachUser.nameUser} {eachUser.surnameUser} </p>
+                            <p>@{eachUser.username} </p>
+                        </div>
                         <hr />
 
                     </div>
                 })
             }
-        </>
+        </div>
     )
 }
 
