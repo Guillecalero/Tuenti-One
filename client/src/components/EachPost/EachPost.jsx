@@ -2,10 +2,9 @@ import { useContext } from "react"
 import { AuthContext } from "../../context/auth.context"
 import posteosService from "../../services/posteos.service"
 import DropDownComment from "../DropdownComment/DropDownComment"
-
+import posteosService from "../../services/posteos.service"
 
 const EachPost = ({ eachPost, reloadPage }) => {
-
 
     const { user } = useContext(AuthContext)
 
@@ -19,7 +18,6 @@ const EachPost = ({ eachPost, reloadPage }) => {
 
     return (
         <div key={eachPost._id}>
-            <p>post id: {eachPost._id}</p>
             <p>{eachPost.user.username}</p>
             <p>{eachPost.date.slice(0, 10)}</p>
             <p>{eachPost.status}</p>
@@ -36,7 +34,7 @@ const EachPost = ({ eachPost, reloadPage }) => {
             <hr />
             <DropDownComment postId={eachPost._id} reloadPage={reloadPage} />
             <hr />
-        </div>
+        </div >
     )
 }
 

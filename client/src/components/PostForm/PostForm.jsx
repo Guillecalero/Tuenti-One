@@ -2,7 +2,14 @@ import { useContext, useState } from "react"
 import { Form } from "react-bootstrap"
 import posteosService from "../../services/posteos.service"
 import { ReloadContext } from '../../context/loadPage.context'
+<<<<<<< HEAD
+<<<<<<< HEAD
 import uploadService from "../../services/upload.service"
+=======
+>>>>>>> f194d1e (added comment to be shown)
+=======
+import uploadService from "../../services/upload.service"
+>>>>>>> dada5d8 (added cloudinary and fixed delete post button)
 
 const Posteos = () => {
 
@@ -13,7 +20,14 @@ const Posteos = () => {
 
     const { reloadPage } = useContext(ReloadContext)
 
+<<<<<<< HEAD
+<<<<<<< HEAD
     const [loadingImage, setLoadingImage] = useState(false)
+=======
+>>>>>>> f194d1e (added comment to be shown)
+=======
+    const [loadingImage, setLoadingImage] = useState(false)
+>>>>>>> dada5d8 (added cloudinary and fixed delete post button)
 
     const handleInputChange = e => {
         const { name, value } = e.target
@@ -45,7 +59,15 @@ const Posteos = () => {
 
         posteosService
             .createOnePost(postStatus)
+<<<<<<< HEAD
+<<<<<<< HEAD
             .then(() => {
+=======
+            .then(({ data }) => {
+>>>>>>> f194d1e (added comment to be shown)
+=======
+            .then(() => {
+>>>>>>> dada5d8 (added cloudinary and fixed delete post button)
                 reloadPage()
             })
             .catch(err => console.log(err))
