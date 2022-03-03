@@ -19,12 +19,14 @@ const DiscoverPage = () => {
             {
                 discoverPage.map(eachUser => {
                     return <div>
+
                         <img src={eachUser.imageURL} alt="imagen de usuari@" />
                         <hr />
                         <p>Nombre de usuario: {eachUser.username} </p>
                         <hr />
                         <p>Nombre: {eachUser.nameUser} </p>
                         <hr />
+
                     </div>
                 })
             }
