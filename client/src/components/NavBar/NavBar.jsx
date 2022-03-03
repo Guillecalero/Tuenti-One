@@ -28,11 +28,11 @@ const NavBar = () => {
                                 </Link>
                             }
                             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                                <NavDropdown.Item href="#action/3.1">Friends</NavDropdown.Item>
+                                <NavDropdown.Item href="#action/3.2">Posts</NavDropdown.Item>
+                                <NavDropdown.Item href="#action/3.3">Formuluá</NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                                <NavDropdown.Item href="#action/3.4">Salir</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                         <div className="loginRegister">
@@ -50,7 +50,7 @@ const NavBar = () => {
                                     :
                                     <>
                                         <Nav.Link as='span' onClick={logOutUser}>Cerrar sesión</Nav.Link>
-                                        <Nav.Link as='span'>Bienvenido {user?.username}</Nav.Link>
+                                        <Nav.Link as='span'>Bienvenid@ {user?.username}</Nav.Link>
                                     </>
                             }
                         </div>
