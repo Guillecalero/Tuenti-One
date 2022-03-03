@@ -1,5 +1,5 @@
 const router = require('express').Router()
-
+const { isAuthenticated } = require('../middlewares/jwt.middleware')
 const Comment = require('../models/Comment.model')
 
 router.get('/', (req, res) => {
@@ -9,9 +9,14 @@ router.get('/', (req, res) => {
         .catch(err => res.status(400).json(err))
 })
 
-router.post('/neww-commentt', (req, res) => {
+router.post('/neww-commentt', isAuthenticated, (req, res) => {
+
+    console.log("payload?", req.payload)
+
+    const newComment = { ...req.body, user: req.payload._id }
+
     Comment
-        .create(req.body)
+        .create(newComment)
         .then(data => res.json(data))
         .catch(err => res.status(400).json(err))
 })

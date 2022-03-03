@@ -1,6 +1,15 @@
 const router = require('express').Router()
 const User = require('../models/User.model')
 
+router.get('/:user_id', (req, res) => {
+
+    const { user_id } = req.params
+    User
+        .findOne({ user_id })
+        .then(data => res.json(data))
+        .catch(err => res.status(400).json(err))
+})
+
 router.get('/:username', (req, res) => {
 
     const { username } = req.params
