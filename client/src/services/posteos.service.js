@@ -27,15 +27,12 @@ class PosteosService {
     }
     deleteOnePost(id) {
         return this.axios.delete(`/${id}/delete-post`)
-<<<<<<< HEAD
     }
     addNewComment(id, info) {
         return this.axios.post(`/${id}/push-comment`, info)
-=======
->>>>>>> dada5d8 (added cloudinary and fixed delete post button)
     }
-    addNewComment(id, info) {
-        return this.axios.post(`/${id}/push-comment`, info)
+    pushNewComment(id, info) {
+        return this.axios.put(`/${id}/push-comment-post`, info)
     }
 }
 
