@@ -1,19 +1,17 @@
-import { useEffect } from "react"
 import { useState } from "react"
 import { Button, Form, InputGroup } from 'react-bootstrap'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, } from 'react-router-dom'
 import userService from "../../services/user.service"
 import { AuthContext } from "../../context/auth.context"
 import { useContext } from "react"
 
 const ProfilePageEdit = (userId) => {
 
-    const [editProfileForm, setEditProfileForm] = useState(
+    const [ProfilePageEdit, setProfilePageEdit] = useState(
         {
             username: '',
             nameUser: '',
             surnameUser: '',
-            email: '',
             imageURL: ''
         }
     )
@@ -23,8 +21,8 @@ const ProfilePageEdit = (userId) => {
 
     const handleInputChange = e => {
         const { name, value } = e.target
-        setEditProfileForm({
-            ...editProfileForm,
+        setProfilePageEdit({
+            ...ProfilePageEdit,
             [name]: value
         })
     }
@@ -32,14 +30,14 @@ const ProfilePageEdit = (userId) => {
     const handleSubmit = e => {
         e.preventDefault()
         userService
-            .editProfileUser(userId, editProfileForm)
+            .ProfilePageEdit(userId, ProfilePageEdit)
             .then(({ data }) => {
                 console.log(data, "soy el use nena")
                 setUser({
                     ...user,
                     data
                 })
-                navigate('/perfil')
+                // navigate(`/perfil/${username}`)
             })
             .catch(err => console.log(err))
     }
@@ -54,7 +52,7 @@ const ProfilePageEdit = (userId) => {
                     required
                     placeholder="Username"
                     name='username'
-                    value={editProfileForm.username}
+                    value={ProfilePageEdit.username}
                     onChange={handleInputChange}
                     maxLength='10'
                 />
@@ -65,7 +63,7 @@ const ProfilePageEdit = (userId) => {
                 <Form.Control
                     type='text'
                     name='nameUser'
-                    value={editProfileForm.nameUser}
+                    value={ProfilePageEdit.nameUser}
                     onChange={handleInputChange}
                     placeholder='Introduce tu nombre'
                     maxLength='40'
@@ -77,21 +75,10 @@ const ProfilePageEdit = (userId) => {
                 <Form.Control
                     type='text'
                     name='surnameUser'
-                    value={editProfileForm.surnameUser}
+                    value={ProfilePageEdit.surnameUser}
                     onChange={handleInputChange}
                     placeholder='Introduce tu apellido'
                     maxLength='40'
-                />
-            </Form.Group>
-
-            <Form.Group className='mb-3'>
-                <Form.Label>Email:</Form.Label>
-                <Form.Control type='email'
-                    name='email'
-                    value={editProfileForm.email}
-                    onChange={handleInputChange}
-                    placeholder='Correo electronico'
-                    required
                 />
             </Form.Group>
 
@@ -101,7 +88,7 @@ const ProfilePageEdit = (userId) => {
                     type='file'
                     name='imageURL'
                     onChange={handleInputChange}
-                    value={editProfileForm.imageURL}
+                    value={ProfilePageEdit.imageURL}
                 />
             </Form.Group>
 
