@@ -18,6 +18,12 @@ const NavBar = () => {
                             <Link to='/home'>
                                 <p className="nav-link">Home</p>
                             </Link>
+                            {
+                                isLoggedIn &&
+                                <Link to={`/perfil/${user?.username}`}>
+                                    <p className="nav-link">Perfil</p>
+                                </Link>
+                            }
                             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>

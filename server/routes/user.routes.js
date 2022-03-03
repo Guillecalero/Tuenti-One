@@ -1,11 +1,11 @@
 const router = require('express').Router()
 const User = require('../models/User.model')
 
-router.get('/:id', (req, res) => {
+router.get('/:username', (req, res) => {
 
-    const { id } = req.params
+    const { username } = req.params
     User
-        .findById(id)
+        .findOne({ username })
         .then(data => res.json(data))
         .catch(err => res.status(400).json(err))
 })

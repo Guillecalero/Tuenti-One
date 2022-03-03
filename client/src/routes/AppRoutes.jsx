@@ -13,8 +13,8 @@ const AppRoutes = () => {
             <Route path='/home' element={<HomePage />} />
             <Route path='/registro' element={<RegisterPage />} />
             <Route path='/' element={<LoginPage /> /*Login page as the main page*/} />
-            <Route path='/perfil' element={<ProfilePage />} />
-            <Route path='/:id/editar' element={<ProfilePageEdit />} />
+            <Route path='/perfil/:username' element={<ProfilePage />} />
+            <Route path='/:username/editar' element={<ProfilePageEdit />} />
             <Route path='/discover' element={<DiscoverPage />} />
 
         </Routes>
