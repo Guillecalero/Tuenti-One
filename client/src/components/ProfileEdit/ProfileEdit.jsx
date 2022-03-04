@@ -1,11 +1,13 @@
 import { useState } from "react"
 import { Button, Form, InputGroup } from 'react-bootstrap'
-import { useNavigate, } from 'react-router-dom'
+import { useNavigate, useParams, } from 'react-router-dom'
 import userService from "../../services/user.service"
 import { AuthContext } from "../../context/auth.context"
 import { useContext } from "react"
 
-const ProfilePageEdit = (userId) => {
+const ProfilePageEdit = () => {
+
+    const { username } = useParams()
 
     const [ProfilePageEdit, setProfilePageEdit] = useState(
         {
@@ -15,6 +17,10 @@ const ProfilePageEdit = (userId) => {
             imageURL: ''
         }
     )
+
+    //todo add effect with user info del service o del context
+
+
     const { user, setUser } = useContext(AuthContext)
 
     const navigate = useNavigate()
@@ -30,7 +36,7 @@ const ProfilePageEdit = (userId) => {
     const handleSubmit = e => {
         e.preventDefault()
         userService
-            .editProfileUser(userId, ProfilePageEdit)
+            .editProfileUser(username, ProfilePageEdit)
             .then(({ data }) => {
                 setUser({
                     ...user,
@@ -40,7 +46,6 @@ const ProfilePageEdit = (userId) => {
             })
             .catch(err => console.log(err))
     }
-
 
     return (
         <Form onSubmit={handleSubmit}>
