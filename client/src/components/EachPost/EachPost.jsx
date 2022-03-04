@@ -2,14 +2,14 @@ import { useState, useEffect, useContext } from "react"
 import { AuthContext } from "../../context/auth.context"
 import posteosService from "../../services/posteos.service"
 import DropDownComment from "../DropdownComment/DropDownComment"
-import { ReloadContext } from '../../context/loadPage.context'
+import { PostsContext } from '../../context/posts.context'
 import EachCommentFromPost from "../EachCommentFromPost/EachCommentFromPost"
 
 const EachPost = ({ eachPost }) => {
 
     const { user } = useContext(AuthContext)
     // const [oneUser, setOneUser] = useState()
-    const { reloadPage } = useContext(ReloadContext)
+    const { reloadPage } = useContext(PostsContext)
 
     const delPost = () => {
         posteosService

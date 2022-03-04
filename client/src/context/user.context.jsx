@@ -12,7 +12,6 @@ const LoadPageWrapper = (props) => {
     const reloadPage = () => {
 
         userService
-
             .getAllUsers()
             .then(({ data }) => {
                 setLoadUser(data)

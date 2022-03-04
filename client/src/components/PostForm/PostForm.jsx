@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 import { Form } from "react-bootstrap"
 import posteosService from "../../services/posteos.service"
-import { ReloadContext } from '../../context/loadPage.context'
+import { PostsContext } from '../../context/posts.context'
 import uploadService from "../../services/upload.service"
 
 const Posteos = () => {
@@ -11,7 +11,7 @@ const Posteos = () => {
         imageURL: ''
     })
 
-    const { reloadPage } = useContext(ReloadContext)
+    const { refreshPosts } = useContext(PostsContext)
     const [loadingImage, setLoadingImage] = useState(false)
 
     const handleInputChange = e => {
@@ -44,9 +44,7 @@ const Posteos = () => {
 
         posteosService
             .createOnePost(postStatus)
-            .then(() => {
-                reloadPage()
-            })
+            .then(() => refreshPosts())
             .catch(err => console.log(err))
 
         setPostStatus({

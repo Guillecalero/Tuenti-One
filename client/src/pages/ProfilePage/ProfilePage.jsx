@@ -13,9 +13,7 @@ const ProfilePage = () => {
     useEffect(() => {
         userService
             .getOneUser(username)
-            .then(({ data }) => {
-                setUserInfo(data)
-            })
+            .then(({ data }) => setUserInfo(data))
             .catch(err => console.log(err))
     }, [username])
 
@@ -27,8 +25,6 @@ const ProfilePage = () => {
             <p>Apellidos: {userInfo.surnameUser} </p>
             <p>Biografía: {userInfo.biography} </p>
             <p>Cumpleaños: {userInfo.birthday?.slice(0, 10)}</p>
-
-            {/* <ProfilePageEdit userId={userInfo._id} /> */}
 
             <Link to={`/${userInfo.username}/editar`}>
                 <p>Editar perfil</p>

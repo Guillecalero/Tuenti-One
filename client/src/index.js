@@ -1,17 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter as Router } from 'react-router-dom';
-import { AuthProviderWrapper } from './context/auth.context';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router } from 'react-router-dom'
+import { AuthProviderWrapper } from './context/auth.context'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import App from './App'
-import { LoadPageWrapper } from './context/loadPage.context';
+import { PostsWrapper } from './context/posts.context'
 
 ReactDOM.render(
   <Router>
     <AuthProviderWrapper>
-      <LoadPageWrapper>
+      <PostsWrapper>
         <App />
-      </LoadPageWrapper>
+      </PostsWrapper>
     </AuthProviderWrapper>
   </Router>,
   document.getElementById('root')

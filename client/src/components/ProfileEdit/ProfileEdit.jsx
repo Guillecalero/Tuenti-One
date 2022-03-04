@@ -1,24 +1,23 @@
-import { useState } from "react"
-import { Button, Form, InputGroup } from 'react-bootstrap'
+import { useState, useContext, useEffect } from "react"
+import { Form, InputGroup } from 'react-bootstrap'
 import { useNavigate, useParams, } from 'react-router-dom'
 import userService from "../../services/user.service"
 import { AuthContext } from "../../context/auth.context"
-import { useContext } from "react"
+import uploadService from "../../services/upload.service"
 
 const ProfilePageEdit = () => {
 
     const { username } = useParams()
 
-    const [ProfilePageEdit, setProfilePageEdit] = useState(
-        {
-            username: '',
-            nameUser: '',
-            surnameUser: '',
-            imageURL: ''
-        }
-    )
+    const [ProfilePageEdit, setProfilePageEdit] = useState({})
+    const [loadingImage, setLoadingImage] = useState(false)
 
-    //todo add effect with user info del service o del context
+    useEffect(() => {
+        userService
+            .getOneUser(username)
+            .then(({ data }) => setProfilePageEdit(data))
+            .catch(err => console.log(err))
+    }, [username])
 
     const { user, setUser } = useContext(AuthContext)
 
@@ -32,18 +31,30 @@ const ProfilePageEdit = () => {
         })
     }
 
+    const uploadPostImage = e => {
+
+        setLoadingImage(true)
+
+        const uploadData = new FormData()
+        uploadData.append('imageURL', e.target.files[0])
+
+        uploadService
+            .uploadImage(uploadData)
+            .then(({ data }) => {
+                setLoadingImage(false)
+                setProfilePageEdit({ ...ProfilePageEdit, imageURL: data.cloudinary_url })
+            })
+            .catch(err => console.log(err))
+    }
+
     const handleSubmit = e => {
         e.preventDefault()
         userService
             .editProfileUser(username, ProfilePageEdit)
-            .then(({ data }) => {
-                setUser({
-                    ...user,
-                    data
-                })
-                // navigate(`/perfil/${username}`)
-            })
+            .then(({ data }) => setUser({ ...user, data }))
             .catch(err => console.log(err))
+
+        navigate(`/perfil/${username}`)
     }
 
     return (
@@ -90,12 +101,11 @@ const ProfilePageEdit = () => {
                 <Form.Control
                     type='file'
                     name='imageURL'
-                    onChange={handleInputChange}
-                    value={ProfilePageEdit.imageURL}
+                    onChange={uploadPostImage}
                 />
             </Form.Group>
 
-            <Button type='submit' className='btn btn-primary'>Editar</Button>
+            <button className="btn btn-primary" type="submit" disabled={loadingImage}>{loadingImage ? 'Espere...' : 'Enviar'}</button>
 
         </Form>
     )

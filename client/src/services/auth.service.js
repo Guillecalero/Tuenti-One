@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { AuthContext } from '../context/auth.context';
+import { AuthContext } from '../context/auth.context'
 
 class AuthService {
     constructor() {
@@ -7,7 +7,7 @@ class AuthService {
 
         this.axios.interceptors.request.use((config) => {
 
-            const storedToken = localStorage.getItem("authToken");
+            const storedToken = localStorage.getItem("authToken")
 
             if (storedToken) {
                 config.headers = { Authorization: `Bearer ${storedToken}` }
