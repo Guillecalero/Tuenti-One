@@ -16,9 +16,9 @@ const AppRoutes = () => {
             <Route path='/' element={<LoginPage /> /*Login page as the main page*/} />
             <Route path='/perfil/:username' element={<ProfilePage />} />
             <Route path='/:username/editar' element={<ProfilePageEdit />} />
-            <Route path="/descubrir" element={<PrivateRoute />}>
-                <Route path='' element={<DiscoverPage />} />
-            </Route>
+            {/* <Route path="/descubrir" element={<PrivateRoute />}> */}
+            <Route path='/descubrir' element={<DiscoverPage />} />
+            {/* </Route> */}
 
         </Routes>
     )

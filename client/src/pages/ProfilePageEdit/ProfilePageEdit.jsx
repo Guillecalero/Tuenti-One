@@ -9,7 +9,6 @@ const ProfilePageEdit = () => {
 
         </>
     )
-
 }
 
 export default ProfilePageEdit

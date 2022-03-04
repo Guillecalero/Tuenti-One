@@ -56,8 +56,6 @@ function AuthProviderWrapper(props) {
             {props.children}
         </AuthContext.Provider>
     )
-
-
 }
 
 export { AuthContext, AuthProviderWrapper };

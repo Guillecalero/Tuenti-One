@@ -7,8 +7,6 @@ const HomePage = () => {
 
     const { loadPost } = useContext(ReloadContext)
 
-
-
     return (
         <>
             <h1>Homepage</h1>

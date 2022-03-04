@@ -16,7 +16,6 @@ const LoadPageWrapper = (props) => {
             .getAllUsers()
             .then(({ data }) => {
                 setLoadUser(data)
-
             })
             .catch(error => console.log(error))
 
@@ -28,7 +27,6 @@ const LoadPageWrapper = (props) => {
             </ReloadContext.Provider>
         )
     }
-
 }
 
 export { ReloadContext, LoadPageWrapper }
