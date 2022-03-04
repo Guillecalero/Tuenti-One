@@ -20,10 +20,6 @@ const ProfilePageEdit = () => {
 
     //todo add effect with user info del service o del context
 
-<<<<<<< HEAD
-=======
-
->>>>>>> guille
     const { user, setUser } = useContext(AuthContext)
 
     const navigate = useNavigate()
