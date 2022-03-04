@@ -30,7 +30,7 @@ const ProfilePageEdit = (userId) => {
     const handleSubmit = e => {
         e.preventDefault()
         userService
-            .ProfilePageEdit(userId, ProfilePageEdit)
+            .editProfileUser(userId, ProfilePageEdit)
             .then(({ data }) => {
                 setUser({
                     ...user,

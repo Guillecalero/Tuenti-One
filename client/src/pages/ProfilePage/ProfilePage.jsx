@@ -34,10 +34,7 @@ const ProfilePage = () => {
                 <p>Editar perfil</p>
             </Link>
         </div>
-
-
     )
-
 }
 
 export default ProfilePage
