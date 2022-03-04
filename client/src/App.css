@@ -49,6 +49,10 @@ p, h1, h2, h3, h4, h5, h6 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  /* background-color: #C4FEF4;; */
+  color: black;
+  
+  
 }
 
 .discoverElm {
@@ -56,6 +60,9 @@ p, h1, h2, h3, h4, h5, h6 {
   width: 20rem;
   border: 1px solid black;
   margin: 1rem 2rem;
+
+  
+ 
 }
 
 .discoverElm img {

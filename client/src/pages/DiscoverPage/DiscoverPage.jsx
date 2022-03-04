@@ -25,6 +25,18 @@ const DiscoverPage = () => {
                         <div className='discoverSidetext'>
                             <p>{eachUser.nameUser} {eachUser.surnameUser} </p>
                             <p>@{eachUser.username} </p>
+
+                            {/* <Card style={{ width: '18rem' }}>
+                                <Card.Img variant="top" src={eachUser.imageURL} alt= "imagen de usuari@" />
+                                <Card.Body>
+                               
+                                      <ListGroup className="list-group-flush">
+                                    <ListGroupItem>{eachUser.nameUser} {eachUser.surnameUser}</ListGroupItem>
+                                    <ListGroupItem>@{eachUser.username}</ListGroupItem>
+                                 
+                                </ListGroup>
+                                </Card.Body>
+                            </Card> */}
                         </div>
                         <hr />
 
