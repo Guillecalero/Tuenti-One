@@ -1,15 +1,15 @@
-import { useState } from "react"
-import { useEffect } from "react"
-import { useContext } from "react"
+import { useState, useEffect, useContext } from "react"
 import { AuthContext } from "../../context/auth.context"
 import posteosService from "../../services/posteos.service"
-import userService from "../../services/user.service"
 import DropDownComment from "../DropdownComment/DropDownComment"
+import { ReloadContext } from '../../context/loadPage.context'
+import EachCommentFromPost from "../EachCommentFromPost/EachCommentFromPost"
 
-const EachPost = ({ eachPost, reloadPage }) => {
+const EachPost = ({ eachPost }) => {
 
     const { user } = useContext(AuthContext)
-    const [oneUser, setOneUser] = useState()
+    // const [oneUser, setOneUser] = useState()
+    const { reloadPage } = useContext(ReloadContext)
 
     const delPost = () => {
         posteosService
@@ -20,16 +20,6 @@ const EachPost = ({ eachPost, reloadPage }) => {
     }
 
 
-
-    const findComentUser = (id) => {
-        userService
-            .getOneUserById(id)
-            .then(({ data }) => {
-                console.log(data)
-                setOneUser(data.username)
-            })
-    }
-
     return (
         <div key={eachPost._id}>
             <p>{eachPost.user?.username}</p>
@@ -39,14 +29,7 @@ const EachPost = ({ eachPost, reloadPage }) => {
             {eachPost.user && eachPost.user && user?._id === eachPost.user && <button className='btn btn-danger' onClick={delPost}>Eliminar</button>}
             <hr />
             <div>
-                {eachPost.comments.map(eachComment => {
-                    return <div key={eachComment._id}>
-                        <p>{findComentUser(`${eachComment.user}`)}</p>
-                        <p>{eachComment.date}</p>
-                        <p>{oneUser}</p>
-                        <p><strong>{eachComment.text}</strong></p>
-                    </div>
-                })}
+                {eachPost.comments.map(eachComment => <EachCommentFromPost eachComment={eachComment} key={eachComment._id} />)}
             </div>
             <hr />
             <DropDownComment postId={eachPost._id} reloadPage={reloadPage} />

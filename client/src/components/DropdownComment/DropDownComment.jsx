@@ -6,11 +6,7 @@ import { AuthContext } from "../../context/auth.context"
 
 const DropDownComment = ({ postId, reloadPage }) => {
 
-    const [postComment, setPostComment] = useState({
-        text: '',
-    })
-
-    const [showDropdrown, setShowDropDown] = useState(false)
+    const [postComment, setPostComment] = useState({ text: '' })
 
     const handleInputChange = e => {
         const { name, value } = e.target
@@ -27,24 +23,13 @@ const DropDownComment = ({ postId, reloadPage }) => {
             .addNewComment(postComment)
             .then(({ data }) => { posteosService.pushNewComment(postId, data) })
             .then(() => {
-                setShowDropDown(false)
-                reloadPage()
                 setPostComment({ text: '' })
+                reloadPage()
             })
-    }
-
-    const toggleDropdrown = () => {
-        if (showDropdrown) {
-            setShowDropDown(false)
-        }
-        else {
-            setShowDropDown(true)
-        }
     }
 
     return (
         <DropdownButton
-            onClick={() => toggleDropdrown()}
             variant="outline-secondary"
             title="Comentar"
             id="input-group-dropdown-1"
