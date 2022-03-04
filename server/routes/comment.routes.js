@@ -11,9 +11,7 @@ router.get('/', (req, res) => {
 
 router.post('/neww-commentt', isAuthenticated, (req, res) => {
 
-    console.log("payload?", req.payload)
-
-    const newComment = { ...req.body }
+    const newComment = { ...req.body, user: req.payload._id }
 
     Comment
         .create(newComment)

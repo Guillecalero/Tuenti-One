@@ -5,14 +5,14 @@ import { ReloadContext } from '../../context/loadPage.context'
 
 const HomePage = () => {
 
-    const { loadPost, reloadPage } = useContext(ReloadContext)
+    const { loadPost } = useContext(ReloadContext)
 
     return (
         <>
             <h1>Homepage</h1>
             <Posteos />
             <hr />
-            <PostList loadPost={loadPost} reloadPage={reloadPage} />
+            <PostList loadPost={loadPost} />
         </>
     )
 }
