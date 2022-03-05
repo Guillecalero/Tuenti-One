@@ -37,9 +37,14 @@ class PosteosService {
     pushNewComment(id, info) {
         return this.axios.put(`/${id}/push-comment-post`, info)
     }
-
     pullOneComment(postId, commentId) {
         return this.axios.put(`/${postId}/${commentId}/pull-comment-post`)
+    }
+    pushOneUserLike(postId, userId) {
+        return this.axios.put(`/${postId}/${userId}/push-like`)
+    }
+    pullOneUserLike(postId, userId) {
+        return this.axios.put(`/${postId}/${userId}/pull-like`)
     }
 }
 
