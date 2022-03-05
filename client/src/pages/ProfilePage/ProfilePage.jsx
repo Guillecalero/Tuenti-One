@@ -18,18 +18,24 @@ const ProfilePage = () => {
     }, [username])
 
     return (
-        <div>
-            <h3>Nombre de usuario: {userInfo?.username} </h3>
-            <img src={userInfo.imageURL} alt="imagen de usuari@" />
-            <p>Nombre: {userInfo.nameUser} </p>
-            <p>Apellidos: {userInfo.surnameUser} </p>
-            <p>Biografía: {userInfo.biography} </p>
-            <p>Cumpleaños: {userInfo.birthday?.slice(0, 10)}</p>
+        <>
+            <div className="containerEditProfile">
 
-            <Link to={`/${userInfo.username}/editar`}>
-                <p>Editar perfil</p>
-            </Link>
-        </div>
+                <img className="imgContainer" src={userInfo.imageURL} alt="imagen de usuari@" />
+                <div>
+                    <div className="containerInfo">
+                        <p><strong>@</strong> <strong>{userInfo?.username}</strong></p>
+                        <p><strong> </strong><strong>{userInfo.nameUser}</strong> </p>
+                        <p><strong> </strong> <strong>{userInfo.surnameUser} </strong></p>
+                        <p><strong>{userInfo.birthday?.slice(0, 10)}</strong></p>
+                        <Link to={`/${userInfo.username}/editar`}>
+                            <button className="profileButton"><strong>Editar perfil</strong></button>
+                        </Link>
+                    </div>
+                </div>
+            </div>
+            <h5 className="biography"><strong> Biografía:</strong> {userInfo.biography} </h5>
+        </>
     )
 }
 

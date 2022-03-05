@@ -73,7 +73,7 @@ const ProfilePageEdit = () => {
             </InputGroup>
 
             <Form.Group className='mb-3'>
-                <Form.Label>Nombre:</Form.Label>
+                <Form.Label><strong>Nombre:</strong></Form.Label>
                 <Form.Control
                     type='text'
                     name='nameUser'
@@ -85,7 +85,7 @@ const ProfilePageEdit = () => {
             </Form.Group>
 
             <Form.Group className='mb-3'>
-                <Form.Label>Apellido:</Form.Label>
+                <Form.Label><strong>Apellido:</strong></Form.Label>
                 <Form.Control
                     type='text'
                     name='surnameUser'
@@ -97,7 +97,19 @@ const ProfilePageEdit = () => {
             </Form.Group>
 
             <Form.Group className='mb-3'>
-                <Form.Label>Foto de perfil:</Form.Label>
+                <Form.Label><strong>Biografía:</strong></Form.Label>
+                <Form.Control
+                    type='text'
+                    name='biographyUser'
+                    value={ProfilePageEdit.biography}
+                    onChange={handleInputChange}
+                    placeholder='Introduce tu biografía'
+                    maxLength='40'
+                />
+            </Form.Group>
+
+            <Form.Group className='mb-3'>
+                <Form.Label><strong>Foto de perfil:</strong></Form.Label>
                 <Form.Control
                     type='file'
                     name='imageURL'

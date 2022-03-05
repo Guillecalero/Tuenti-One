@@ -56,7 +56,7 @@ const Posteos = () => {
 
     return (
         <>
-            <h1>Posteooo</h1>
+            {/* <h1>Posteooo</h1> */}
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                     <Form.Control

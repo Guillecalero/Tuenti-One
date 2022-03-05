@@ -5,7 +5,7 @@ const HomePage = () => {
 
     return (
         <>
-            <h1>Homepage</h1>
+            <h1>Homepage/Posts</h1>
             <Posteos />
             <hr />
             <PostList />
