@@ -48,6 +48,18 @@ router.put('/:id/push-comment-post', (req, res) => {
         .catch(err => res.status(400).json(err))
 })
 
+router.put('/:postId/:commentId/pull-comment-post', (req, res) => {
+    const { postId, commentId } = req.params
+
+    console.log(postId);
+    console.log(commentId);
+
+    Post
+        .findByIdAndUpdate(postId, { $pull: { comments: commentId } }, { new: true })
+        .then(data => res.json(data))
+        .catch(err => res.status(400).json(err))
+})
+
 router.delete('/:id/delete-post', (req, res) => {
     const { id } = req.params
 

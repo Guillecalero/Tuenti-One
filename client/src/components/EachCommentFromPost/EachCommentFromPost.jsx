@@ -2,9 +2,10 @@ import { useContext, useState } from "react"
 import { AuthContext } from "../../context/auth.context"
 import { PostsContext } from "../../context/posts.context"
 import commentServices from "../../services/comment.service"
+import posteosService from "../../services/posteos.service"
 import userService from "../../services/user.service"
 
-function EachCommentFromPost({ eachComment }) {
+function EachCommentFromPost({ eachComment, postId }) {
 
     const [oneUser, setOneUser] = useState()
     const { user } = useContext(AuthContext)
@@ -15,11 +16,12 @@ function EachCommentFromPost({ eachComment }) {
         .then(({ data }) => setOneUser(data.username))
 
     const delComment = () => {
-        commentServices
-            .removeOneComment(eachComment._id)
+        posteosService
+            .pullOneComment(postId, eachComment._id)
+            .then(() => commentServices.removeOneComment(eachComment._id))
             .then(() => refreshPosts())
+            .catch(err => console.log(err))
     }
-
 
 
     return <div >

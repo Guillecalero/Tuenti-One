@@ -37,6 +37,10 @@ class PosteosService {
     pushNewComment(id, info) {
         return this.axios.put(`/${id}/push-comment-post`, info)
     }
+
+    pullOneComment(postId, commentId) {
+        return this.axios.put(`/${postId}/${commentId}/pull-comment-post`)
+    }
 }
 
 const posteosService = new PosteosService()

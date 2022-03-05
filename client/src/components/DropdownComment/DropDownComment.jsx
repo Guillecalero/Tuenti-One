@@ -31,8 +31,9 @@ const DropDownComment = ({ postId, refreshPosts }) => {
     return (
         <DropdownButton
             variant="outline-secondary"
-            title="Comentar"
+            title={<i class="fa-solid fa-comment"></i>}
             id="input-group-dropdown-1"
+            className="commentBtn"
         >
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
