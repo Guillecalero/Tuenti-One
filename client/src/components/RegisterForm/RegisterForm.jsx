@@ -13,6 +13,7 @@ const RegisterForm = () => {
             surnameUser: '',
             email: '',
             password: '',
+            biography: '',
             birthday: '',
             imageURL: ''
         }

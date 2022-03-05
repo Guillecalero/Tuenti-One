@@ -100,11 +100,11 @@ const ProfilePageEdit = () => {
                 <Form.Label><strong>Biografía:</strong></Form.Label>
                 <Form.Control
                     type='text'
-                    name='biographyUser'
+                    name='biography'
                     value={ProfilePageEdit.biography}
                     onChange={handleInputChange}
                     placeholder='Introduce tu biografía'
-                    maxLength='40'
+                    maxLength='250'
                 />
             </Form.Group>
 
