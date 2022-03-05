@@ -54,9 +54,52 @@ p, h1, h2, h3, h4, h5, h6 {
   color: black
 }
 
+.h5EditProfile {
+  display: flex;
+  justify-content: center;
+}
+
 .button:focus {
   background-color: #C4FEF4;
   color: white;
+}
+
+/*profile Page*/
+
+.profileButton {
+  display: flex;
+  align-content: flex-end;
+  background-color: #C4FEF4;
+  border: 2px solid black;
+  border-radius: 250px;
+}
+
+.containerEditProfile {
+  display: flex;
+}
+
+.containerInfo {
+  display: block;
+  align-items: center;
+  justify-content: center;
+}
+
+.biography {
+  margin: 50px 10px;
+  border: 2px solid black;
+  border-radius: 150px;
+  background-color: #C4FEF4;
+  padding: 10px;
+  width: auto;
+  max-width: 20%;
+  word-wrap: break-word;
+
+}
+
+.imgContainer {
+  width: 30%;
+  height: 30%;
+  margin-right: 2%;
 }
 
 .loginRegister a>p,

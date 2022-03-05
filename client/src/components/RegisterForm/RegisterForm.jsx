@@ -75,7 +75,7 @@ const RegisterForm = () => {
             </InputGroup>
 
             <Form.Group className='mb-3'>
-                <Form.Label>Nombre:</Form.Label>
+                <Form.Label><strong>Nombre:</strong></Form.Label>
                 <Form.Control
                     type='text'
                     name='nameUser'
@@ -87,7 +87,7 @@ const RegisterForm = () => {
             </Form.Group>
 
             <Form.Group className='mb-3'>
-                <Form.Label>Apellido:</Form.Label>
+                <Form.Label><strong>Apellido:</strong></Form.Label>
                 <Form.Control
                     type='text'
                     name='surnameUser'
@@ -99,7 +99,7 @@ const RegisterForm = () => {
             </Form.Group>
 
             <Form.Group className='mb-3'>
-                <Form.Label>Email:</Form.Label>
+                <Form.Label><strong>Email:</strong></Form.Label>
                 <Form.Control type='email'
                     name='email'
                     value={registerForm.email}
@@ -110,7 +110,7 @@ const RegisterForm = () => {
             </Form.Group>
 
             <Form.Group className='mb-3'>
-                <Form.Label>Contraseña:</Form.Label>
+                <Form.Label><strong>Contraseña:</strong></Form.Label>
                 <Form.Control
                     type='password'
                     name='password'
@@ -122,7 +122,7 @@ const RegisterForm = () => {
             </Form.Group>
 
             <Form.Group className='mb-3'>
-                <Form.Label>Fecha de nacimiento:</Form.Label>
+                <Form.Label><strong>Fecha de nacimiento:</strong></Form.Label>
                 <Form.Control
                     type='date'
                     name='birthday'
