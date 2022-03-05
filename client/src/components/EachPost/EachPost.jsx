@@ -12,6 +12,7 @@ const EachPost = ({ eachPost }) => {
     const { user } = useContext(AuthContext)
     const { refreshPosts } = useContext(PostsContext)
     const [showModal, setShowModal] = useState(false)
+    const [isPressed, setIsPressed] = useState(false)
 
     const delPost = () => {
         posteosService
@@ -48,10 +49,19 @@ const EachPost = ({ eachPost }) => {
             {eachPost.imageURL !== '' ? <img src={eachPost.imageURL} alt='post image' /> : <p></p>}
             <hr />
             <div>
-                {eachPost.comments.map(eachComment => <EachCommentFromPost eachComment={eachComment} key={eachComment._id} />)}
+                {eachPost.comments.map(eachComment => <EachCommentFromPost postId={eachPost._id} eachComment={eachComment} key={eachComment._id} />)}
             </div>
             <hr />
-            <DropDownComment postId={eachPost._id} refreshPosts={refreshPosts} />
+            <div className="postBtns">
+                {
+                    !isPressed
+                        ?
+                        <button className="postLikeBtn" onClick={() => setIsPressed(true)}><i class="fa-solid fa-thumbs-up"></i> Me gusta</button>
+                        :
+                        <button className="postDislikeBtn" onClick={() => setIsPressed(false)}><i class="fa-solid fa-thumbs-up"></i> Me gusta</button>
+                }
+                {<DropDownComment postId={eachPost._id} refreshPosts={refreshPosts} />}
+            </div>
             <hr />
             <Modal show={showModal} onHide={handleModalClose} size="lg">
                 <Modal.Header closeButton>

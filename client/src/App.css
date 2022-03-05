@@ -99,6 +99,68 @@ p, h1, h2, h3, h4, h5, h6 {
   color: gray;
 }
 
+.postLikeBtn {
+  background-color: transparent;
+  border: 1.5px solid #25b6b8;
+  border-radius: 4px;
+  padding: 5.5px 10px;
+  color: #25b6b8;
+  font-weight: 600;
+  transition: .1s ease-out;
+}
+
+/* .postLikeBtn:hover {
+  border-color: #25b6b8;
+  color: #25b6b8;
+} */
+
+.postDislikeBtn {
+  background-color: #25b6b8;
+  border: 1.5px solid transparent;
+  border-radius: 4px;
+  padding: 5.5px 10px;
+  color: white;
+  font-weight: 600;
+  transition: .1s ease-in;
+}
+
+.postBtns {
+  display: flex;
+}
+
+.commentBtn>button {
+  margin-left: 10px;
+  color: #f72585;
+  font-weight: 600;
+  border-color: transparent;
+  transition: .2s ease-out;
+}
+
+.dropdown-toggle::after {
+  content: 'Comentar';
+  border: none;
+  vertical-align: 0;
+}
+
+.commentBtn>button:hover {
+  background-color: transparent;
+  color: #d11f74;
+  border: 1px solid transparent;
+}
+
+.commentBtn>button:focus {
+  outline: none !important;
+}
+
+/* PROFILE PAGE */
+
+.profileHeader img {
+  height: 250px;
+  width: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
 /* DISCOVER PAGE */
 
 .discoverContainer {

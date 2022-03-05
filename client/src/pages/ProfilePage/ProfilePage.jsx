@@ -18,7 +18,7 @@ const ProfilePage = () => {
     }, [username])
 
     return (
-        <div>
+        <div className="profileHeader">
             <h3>Nombre de usuario: {userInfo?.username} </h3>
             <img src={userInfo.imageURL} alt="imagen de usuari@" />
             <p>Nombre: {userInfo.nameUser} </p>

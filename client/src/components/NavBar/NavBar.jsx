@@ -20,12 +20,14 @@ const NavBar = () => {
                             </Link>
                             {
                                 isLoggedIn &&
-                                <Link to='/descubrir'>
-                                    <p className="nav-link">Descubrir</p>
-                                </Link> &&
-                                <Link to={`/perfil/${user?.username}`}>
-                                    <p className="nav-link">Perfil</p>
-                                </Link>
+                                <>
+                                    <Link to='/descubrir'>
+                                        <p className="nav-link">Descubrir</p>
+                                    </Link>
+                                    <Link to={`/perfil/${user?.username}`}>
+                                        <p className="nav-link">Perfil</p>
+                                    </Link>
+                                </>
                             }
                             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                                 <NavDropdown.Item href="#action/3.1">Friends</NavDropdown.Item>
