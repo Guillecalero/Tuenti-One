@@ -33,6 +33,32 @@ p, h1, h2, h3, h4, h5, h6 {
   display: flex;
 }
 
+.login input {
+  background-color: rgb(219, 219, 219);
+  /* border: 1.5px solid #C4FEF4; */
+  /* box-shadow: 5px 5px 10px var(--main-color-tuentione); */
+  transition: background-color .5s;
+}
+
+.login input::placeholder {
+  color: white;
+}
+
+.login input:focus {
+  background-color: #C4FEF4;
+  box-shadow: 5px 5px 10px var(--main-color-tuentione)
+}
+
+.button {
+  background-color: rgb(219, 219, 219);
+  color: black
+}
+
+.button:focus {
+  background-color: #C4FEF4;
+  color: white;
+}
+
 .loginRegister a>p,
 .loginRegister span {
   color: var(--navbar-color);
@@ -79,7 +105,6 @@ p, h1, h2, h3, h4, h5, h6 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  /* background-color: #C4FEF4;; */
   color: black;
 
 
@@ -88,11 +113,9 @@ p, h1, h2, h3, h4, h5, h6 {
 .discoverElm {
   display: flex;
   width: 20rem;
-  border: 1px solid black;
+  border: 1.5px solid black;
   margin: 1rem 2rem;
-
-
-
+  box-shadow: 5px 5px 10px var(--main-color-tuentione);
 }
 
 .discoverElm img {
