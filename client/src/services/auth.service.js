@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { AuthContext } from '../context/auth.context'
 
 class AuthService {
     constructor() {

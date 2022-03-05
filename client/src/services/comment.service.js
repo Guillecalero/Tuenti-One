@@ -19,6 +19,14 @@ class CommentServices {
     addNewComment(info) {
         return this.axios.post('/neww-commentt', info)
     }
+
+    removeOneComment(id) {
+        return this.axios.delete(`/${id}/delete-comment`)
+    }
+
+    editOneComment(id, info) {
+        return this.axios.put(`/${id}/edit-comment`, info)
+    }
 }
 
 const commentServices = new CommentServices()

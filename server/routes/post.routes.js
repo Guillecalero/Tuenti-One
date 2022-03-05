@@ -2,7 +2,7 @@ const router = require('express').Router()
 const { isAuthenticated } = require('../middlewares/jwt.middleware')
 const Post = require('../models/Post.model')
 
-router.get('/', (req, res) => {
+router.get('/', isAuthenticated, (req, res) => {
     Post
         .find()
         .sort({ createdAt: -1 })
@@ -11,6 +11,13 @@ router.get('/', (req, res) => {
             res.json(data)
         })
         .catch(err => res.status(400).json(err))
+})
+
+router.get('/onePost/:id', (req, res) => {
+    Post
+        .findById(req.params)
+        .then(data => res.json(data))
+        .catch(err => res.status(500).json(err))
 })
 
 router.post('/neww-postt', isAuthenticated, (req, res) => {
