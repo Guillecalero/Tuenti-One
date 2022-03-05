@@ -18,10 +18,26 @@ const EachPost = ({ eachPost }) => {
         posteosService
             .deleteOnePost(eachPost._id)
             .then(() => refreshPosts())
+            .catch(err => console.log(err))
     }
 
     const handleModalClose = () => setShowModal(false)
     const handleModalOpen = () => setShowModal(true)
+
+    const addLike = () => {
+        console.log('post id: ', eachPost._id);
+        console.log('user id: ', user._id);
+        posteosService
+            .pushOneUserLike(eachPost._id, user._id)
+            .then(() => refreshPosts())
+            .catch(err => console.log(err))
+    }
+    const delLike = () => {
+        posteosService
+            .pullOneUserLike(eachPost._id, user._id)
+            .then(() => refreshPosts())
+            .catch(err => console.log(err))
+    }
 
     return (
         <div className="postSection" key={eachPost._id}>
@@ -56,9 +72,16 @@ const EachPost = ({ eachPost }) => {
                 {
                     !isPressed
                         ?
-                        <button className="postLikeBtn" onClick={() => setIsPressed(true)}><i class="fa-solid fa-thumbs-up"></i> Me gusta</button>
+                        <button className="postLikeBtn" onClick={() => {
+                            addLike()
+                            setIsPressed(true)
+                        }
+                        }><i class="fa-solid fa-thumbs-up"></i> Me gusta</button>
                         :
-                        <button className="postDislikeBtn" onClick={() => setIsPressed(false)}><i class="fa-solid fa-thumbs-up"></i> Me gusta</button>
+                        <button className="postDislikeBtn" onClick={() => {
+                            delLike()
+                            setIsPressed(false)
+                        }}><i class="fa-solid fa-thumbs-up"></i> Me gusta</button>
                 }
                 {<DropDownComment postId={eachPost._id} refreshPosts={refreshPosts} />}
             </div>

@@ -51,11 +51,26 @@ router.put('/:id/push-comment-post', (req, res) => {
 router.put('/:postId/:commentId/pull-comment-post', (req, res) => {
     const { postId, commentId } = req.params
 
-    console.log(postId);
-    console.log(commentId);
-
     Post
         .findByIdAndUpdate(postId, { $pull: { comments: commentId } }, { new: true })
+        .then(data => res.json(data))
+        .catch(err => res.status(400).json(err))
+})
+
+router.put('/:postId/:userId/push-like', (req, res) => {
+    const { postId, userId } = req.params
+
+    Post
+        .findByIdAndUpdate(postId, { $push: { likes: userId } }, { new: true })
+        .then(data => res.json(data))
+        .catch(err => res.status(400).json(err))
+})
+
+router.put('/:postId/:userId/pull-like', (req, res) => {
+    const { postId, userId } = req.params
+
+    Post
+        .findByIdAndUpdate(postId, { $pull: { likes: userId } })
         .then(data => res.json(data))
         .catch(err => res.status(400).json(err))
 })
