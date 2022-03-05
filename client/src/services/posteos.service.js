@@ -19,6 +19,9 @@ class PosteosService {
     getAllPost() {
         return this.axios.get('/')
     }
+    getOnePost(id) {
+        return this.axios.get(`/onePost/${id}`)
+    }
     createOnePost(info) {
         return this.axios.post('/neww-postt', info)
     }
