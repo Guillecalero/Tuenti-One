@@ -19,7 +19,6 @@ const AppRoutes = () => {
             {/* <Route path="/descubrir" element={<PrivateRoute />}> */}
             <Route path='/descubrir' element={<DiscoverPage />} />
             {/* </Route> */}
-
         </Routes>
     )
 }

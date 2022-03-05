@@ -100,11 +100,11 @@ const ProfilePageEdit = () => {
                 <Form.Label><strong>Biografía:</strong></Form.Label>
                 <Form.Control
                     type='text'
-                    name='biographyUser'
+                    name='biography'
                     value={ProfilePageEdit.biography}
                     onChange={handleInputChange}
                     placeholder='Introduce tu biografía'
-                    maxLength='40'
+                    maxLength='250'
                 />
             </Form.Group>
 
@@ -117,7 +117,7 @@ const ProfilePageEdit = () => {
                 />
             </Form.Group>
 
-            <button className="btn btn-primary" type="submit" disabled={loadingImage}>{loadingImage ? 'Espere...' : 'Enviar'}</button>
+            <button className="editProfileButton" type="submit" disabled={loadingImage}>{loadingImage ? 'Espere...' : 'Enviar'}</button>
 
         </Form>
     )
