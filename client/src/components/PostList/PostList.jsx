@@ -8,7 +8,6 @@ const PostList = () => {
 
     return (
         <>
-            <h1>lista de posts</h1>
             {
                 posts.map((eachPost, idx) => {
                     return <EachPost key={idx} eachPost={eachPost} />

@@ -44,6 +44,7 @@ const DropDownComment = ({ postId, refreshPosts }) => {
                         value={postComment.text}
                         onChange={handleInputChange}
                         name="text"
+                        maxLength='250'
                         required
                     />
                 </Form.Group>

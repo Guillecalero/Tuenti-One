@@ -4,12 +4,13 @@ import PostList from "../../components/PostList/PostList"
 const HomePage = () => {
 
     return (
-        <>
-            <h1>Homepage/Posts</h1>
-            <Posteos />
-            <hr />
-            <PostList />
-        </>
+        <div className="homepage">
+            <div className="postContainer">
+                <Posteos />
+                <hr />
+                <PostList />
+            </div>
+        </div>
     )
 }
 

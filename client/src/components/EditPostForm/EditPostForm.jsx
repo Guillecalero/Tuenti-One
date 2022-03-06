@@ -17,7 +17,7 @@ const EditPostForm = ({ closeModal, refreshPosts, postId }) => {
                 setEditPost(data)
             })
             .catch(err => console.log(err))
-    }, [])
+    }, {})
 
     const handleInputChange = e => {
         const { name, value } = e.target
@@ -68,11 +68,14 @@ const EditPostForm = ({ closeModal, refreshPosts, postId }) => {
                 />
             </Form.Group>
 
-            <Form.Group controlId="coasterImage" className="mb-3">
-                <Form.Control type="file" onChange={uploadPostImage} />
-            </Form.Group>
+            <div className="postFormBtns">
+                <Form.Group controlId="postImage" className="mb-3 postUploadImage">
+                    <label for="file-upload" class="custom-file-upload"><i class="fa fa-cloud-upload"></i> Subir foto</label>
+                    <input id="file-upload" type="file" onChange={uploadPostImage} />
+                </Form.Group>
 
-            <button className="btn btn-primary" type="submit" disabled={loadingImage}>{loadingImage ? 'Espere...' : 'Enviar'}</button>
+                <button className="postFormBtn" type="submit" disabled={loadingImage}>{loadingImage ? 'Espere...' : 'Enviar'}</button>
+            </div>
 
         </Form>
     )

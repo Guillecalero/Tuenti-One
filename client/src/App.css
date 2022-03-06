@@ -3,12 +3,17 @@
 :root {
   --main-color-tuentione: #C4FEF4;
   --navbar-color: rgba(0, 0, 0, .55);
+  --box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.3);
 }
 
 * {
   margin: 0;
   padding: 0;
   font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  background-color: #f0f2f5;
 }
 
 a {
@@ -114,6 +119,57 @@ p, h1, h2, h3, h4, h5, h6 {
 
 /* HOMEPAGE */
 
+.homepage {
+  margin: 2rem 2rem;
+}
+
+.postForm {
+  background-color: white;
+  padding: 16px;
+}
+
+.postFormBtns {
+  display: flex;
+}
+
+.postFormBtn {
+  height: 2.4rem;
+  padding: 0 1rem;
+  margin-left: 1rem;
+  border: 1px solid #ccc;
+  background-color: transparent;
+}
+
+.postUploadImage input {
+  display: none;
+}
+
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.postContainer {
+  width: 40%;
+}
+
+.postSection {
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: var(--box-shadow);
+  margin-bottom: 2rem;
+}
+
+.postSection hr {
+  margin: 10px;
+}
+
+.postSection img {
+  width: 100%;
+}
+
 .postUserContainer {
   display: flex;
   justify-content: space-between;
@@ -128,40 +184,69 @@ p, h1, h2, h3, h4, h5, h6 {
   height: 60px;
   object-fit: cover;
   border-radius: 50%;
+  box-shadow: var(--box-shadow)
+}
+
+.postUserSidetext {
+  margin-left: 1rem;
+}
+
+.postUserSidetext p:nth-child(1) {
+  font-weight: 600;
+  color: black;
+  transition: .2s ease-in;
+}
+
+.postUserSidetext p:nth-child(1):hover {
+  color: #747474;
+}
+
+.postUserSidetext p:nth-child(2) {
+  font-weight: 200;
+  font-size: 14px;
+}
+
+.postUserSidetext p:nth-child(3) {
+  font-weight: 300;
+  font-size: 12px;
+  color: #636363;
+}
+
+.postStatus p {
+  margin-top: 2rem;
+  font-size: 19px;
 }
 
 .btnDelEdit {
   background-color: transparent;
   border: 1px solid transparent;
-  color: black;
+  color: gray;
+  margin: 0 5px;
+  font-size: 14px;
   transition: .2s ease-out;
 }
 
 .btnDelEdit:hover {
-  border: 1px solid gray;
-  color: gray;
+  color: #545454;
 }
 
 .postLikeBtn {
   background-color: transparent;
   border: 1.5px solid #25b6b8;
   border-radius: 4px;
-  padding: 5.5px 10px;
+  padding: 5px 8px;
+  font-size: 15px;
   color: #25b6b8;
   font-weight: 600;
   transition: .1s ease-out;
 }
 
-/* .postLikeBtn:hover {
-  border-color: #25b6b8;
-  color: #25b6b8;
-} */
-
 .postDislikeBtn {
   background-color: #25b6b8;
   border: 1.5px solid transparent;
   border-radius: 4px;
-  padding: 5.5px 10px;
+  padding: 5px 8px;
+  font-size: 15px;
   color: white;
   font-weight: 600;
   transition: .1s ease-in;
@@ -169,6 +254,13 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .postBtns {
   display: flex;
+  justify-content: space-around;
+}
+
+.dropdown-menu {
+  width: 34.56rem;
+  padding: 1rem;
+  transform: translate3d(-329px, 40px, 0px) !important;
 }
 
 .commentBtn>button {
@@ -193,6 +285,48 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .commentBtn>button:focus {
   outline: none !important;
+}
+
+.commentSection {}
+
+.eachComment {
+  padding: 8px 20px;
+  background-color: #EFF2F5;
+  border-radius: 15px;
+  width: 90%;
+  margin: 0 auto 8px;
+}
+
+.commentUserInfo {
+  display: flex;
+}
+
+.commentUserInfo img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: var(--box-shadow);
+}
+
+.commentUserSidetext {
+  margin-left: 1rem;
+}
+
+.commentUserSidetext .knfe1 {
+  font-weight: 600;
+  font-size: 13px;
+  color: black;
+  transition: .2s ease-in;
+}
+
+.commentUserSidetext .knfe1:hover {
+  color: #747474;
+}
+
+.commentUserSidetext .knfe2 {
+  font-weight: 200;
+  font-size: 12px;
 }
 
 /* PROFILE PAGE */

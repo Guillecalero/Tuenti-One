@@ -55,8 +55,7 @@ const Posteos = () => {
 
 
     return (
-        <>
-            {/* <h1>Posteooo</h1> */}
+        <div className="postForm">
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                     <Form.Control
@@ -70,14 +69,17 @@ const Posteos = () => {
                     />
                 </Form.Group>
 
-                <Form.Group controlId="coasterImage" className="mb-3">
-                    <Form.Control type="file" onChange={uploadPostImage} />
-                </Form.Group>
+                <div className="postFormBtns">
+                    <Form.Group controlId="postImage" className="mb-3 postUploadImage">
+                        <label for="file-upload" class="custom-file-upload"><i class="fa fa-cloud-upload"></i> Subir foto</label>
+                        <input id="file-upload" type="file" onChange={uploadPostImage} />
+                    </Form.Group>
 
-                <button className="btn btn-primary" type="submit" disabled={loadingImage}>{loadingImage ? 'Espere...' : 'Enviar'}</button>
+                    <button className="postFormBtn" type="submit" disabled={loadingImage}>{loadingImage ? 'Espere...' : 'Enviar'}</button>
+                </div>
 
             </Form>
-        </>
+        </div>
     )
 }
 

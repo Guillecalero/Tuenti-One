@@ -14,8 +14,10 @@ router.get('/', isAuthenticated, (req, res) => {
 })
 
 router.get('/onePost/:id', (req, res) => {
+
+    const { id } = req.params
     Post
-        .findById(req.params)
+        .findById(id)
         .then(data => res.json(data))
         .catch(err => res.status(500).json(err))
 })
