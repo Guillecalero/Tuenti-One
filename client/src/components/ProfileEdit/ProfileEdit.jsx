@@ -104,7 +104,7 @@ const ProfilePageEdit = () => {
                     value={ProfilePageEdit.biography}
                     onChange={handleInputChange}
                     placeholder='Introduce tu biografía'
-                    maxLength='250'
+                    maxLength='150'
                 />
             </Form.Group>
 

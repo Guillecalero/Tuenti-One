@@ -13,11 +13,10 @@ const EditPostForm = ({ closeModal, refreshPosts, postId }) => {
         posteosService
             .getOnePost(postId)
             .then(({ data }) => {
-                console.log(data);
                 setEditPost(data)
             })
             .catch(err => console.log(err))
-    }, {})
+    }, [])
 
     const handleInputChange = e => {
         const { name, value } = e.target

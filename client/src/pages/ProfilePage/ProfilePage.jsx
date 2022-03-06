@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useState } from "react"
 import { Link, useParams } from "react-router-dom"
-import ProfilePageEdit from "../../components/ProfileEdit/ProfileEdit"
+import EachOwnedPost from "../../components/EachOwnedPost/EachOwnedPost"
 import userService from "../../services/user.service"
 
 const ProfilePage = () => {
@@ -20,21 +20,22 @@ const ProfilePage = () => {
     return (
         <>
             <div className="containerEditProfile">
-
-                <img className="imgContainer" src={userInfo.imageURL} alt="imagen de usuari@" />
-                <div>
-                    <div className="containerInfo">
-                        <p><strong>@</strong> <strong>{userInfo?.username}</strong></p>
-                        <p><strong> </strong><strong>{userInfo.nameUser}</strong> </p>
-                        <p><strong> </strong> <strong>{userInfo.surnameUser} </strong></p>
-                        <p><strong>{userInfo.birthday?.slice(0, 10)}</strong></p>
-                        <Link to={`/${userInfo.username}/editar`}>
-                            <button className="profileButton"><strong>Editar perfil</strong></button>
-                        </Link>
-                    </div>
+                <img src={userInfo.imageURL} alt="imagen de usuari@" />
+                <div className="profileInfo">
+                    <p>{userInfo.nameUser} {userInfo.surnameUser}</p>
+                    <p>@{userInfo?.username}</p>
+                    <p className="biography"><span>Biografía</span><br />{userInfo.biography} </p>
+                    <p><i class="fa-solid fa-cake-candles"></i> {userInfo.birthday?.slice(0, 10)}</p>
+                </div>
+                <div className="profileEditBtn">
+                    <Link to={`/${userInfo?.username}/editar`}>
+                        <button className="profileButton">Editar perfil</button>
+                    </Link>
                 </div>
             </div>
-            <h5 className="biography"><strong> Biografía:</strong> {userInfo.biography} </h5>
+            <div className="profileBodyContainer">
+                <EachOwnedPost />
+            </div>
         </>
     )
 }

@@ -25,6 +25,8 @@ p, h1, h2, h3, h4, h5, h6 {
   padding: 0;
 }
 
+/* NAVBAR */
+
 .navBg {
   background-color: var(--main-color-tuentione);
 }
@@ -32,6 +34,8 @@ p, h1, h2, h3, h4, h5, h6 {
 .me-auto {
   margin: 0 !important
 }
+
+/* LOGIN PAGE */
 
 .loginRegister {
   margin-left: auto;
@@ -71,40 +75,67 @@ p, h1, h2, h3, h4, h5, h6 {
 
 /* PROFILE PAGE */
 
-.profileButton {
-  display: flex;
-  align-content: flex-end;
-  background-color: #C4FEF4;
-  border: 2px solid black;
-  border-radius: 250px;
-}
-
 .containerEditProfile {
   display: flex;
-}
-
-.containerInfo {
-  display: block;
-  align-items: center;
+  background-color: white;
+  width: 100%;
+  padding: 40px 16px 16px 16px;
+  box-shadow: var(--box-shadow);
   justify-content: center;
 }
 
-.biography {
-  margin: 50px 10px;
-  border: 2px solid black;
-  border-radius: 150px;
-  background-color: #C4FEF4;
-  padding: 10px;
-  width: auto;
-  max-width: 20%;
-  word-wrap: break-word;
-
+.containerEditProfile img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: var(--box-shadow);
+  flex-shrink: 0;
 }
 
-.imgContainer {
-  width: 30%;
-  height: 30%;
-  margin-right: 2%;
+.profileInfo {
+  margin: 0 20px;
+  align-self: center;
+  width: 70%;
+}
+
+.profileInfo p:nth-child(1) {
+  font-weight: 600;
+  font-size: 24px;
+  margin-bottom: -8px;
+}
+
+.profileInfo p:nth-child(2) {
+  font-weight: 200;
+  color: gray;
+}
+
+.profileEditBtn {
+  position: absolute;
+  right: 30px;
+}
+
+.profileButton {
+  background-color: #ccc;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 5px 10px;
+  transition: .2s ease-out;
+}
+
+.profileButton:hover {
+  background-color: #a2a2a2;
+}
+
+.biography {
+  padding: 10px;
+  word-wrap: break-word;
+  width: 70%;
+}
+
+.biography span {
+  font-weight: 300;
+  color: rgb(199, 199, 199);
 }
 
 .loginRegister a>p,

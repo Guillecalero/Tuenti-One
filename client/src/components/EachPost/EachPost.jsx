@@ -18,6 +18,7 @@ const EachPost = ({ eachPost }) => {
     const delPost = () => {
         posteosService
             .deleteOnePost(eachPost._id)
+            .then(() => posteosService.pullOneUserPost(user._id, eachPost._id))
             .then(() => refreshPosts())
             .catch(err => console.log(err))
     }
@@ -49,7 +50,7 @@ const EachPost = ({ eachPost }) => {
                                 <p>{eachPost.user?.nameUser} {eachPost.user?.surnameUser}</p>
                             </Link>
                             <p>@{eachPost.user?.username}</p>
-                            <p>{eachPost.date.slice(0, 10)}</p>
+                            <p>{eachPost.date?.slice(0, 10)}</p>
                         </div>
                     </div>
                     <div className="postEditDeleteBtn">
@@ -89,14 +90,14 @@ const EachPost = ({ eachPost }) => {
                 <hr />
                 <Modal show={showModal} onHide={handleModalClose} size="lg">
                     <Modal.Header closeButton>
-                        <Modal.Title>Editar comentario</Modal.Title>
+                        <Modal.Title>Editar post</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <EditPostForm closeModal={handleModalClose} refreshPosts={refreshPosts} postId={eachPost._id} />
                     </Modal.Body>
                 </Modal>
                 <div>
-                    {eachPost.comments.map(eachComment => <EachCommentFromPost postId={eachPost._id} eachComment={eachComment} key={eachComment._id} />)}
+                    {eachPost.comments?.map(eachComment => <EachCommentFromPost postId={eachPost._id} eachComment={eachComment} key={eachComment._id} />)}
                 </div>
             </div>
         </div >
