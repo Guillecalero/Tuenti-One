@@ -1,30 +1,25 @@
-import Card from 'react-bootstrap/Card'
 import FriendsCard from '../FriendsCard/FriendsCard'
+import { useContext } from 'react'
 
-const FriendsList = ({ friends }) => {
+const FriendsList = ({ FriendsCard }) => {
 
     return (
-
-
-        <Row>
-            {friends.map(friends => {
-                return <Col md={4} key={friends._id}> <FriendsCard {...friends} /></Col>
-            })}
-        </Row>
-
+        <>
+            <div className="containerEditProfile">
+                <img className="imgContainer" src={FriendsCard.imageURL} alt="imagen de usuari@" />
+                <div>
+                    <div className="containerInfo">
+                        <p><strong>@</strong> <strong>{FriendsCard?.username}</strong></p>
+                        <p><strong> </strong><strong>{FriendsCard.nameUser}</strong> </p>
+                        <p><strong> </strong> <strong>{FriendsCard.surnameUser} </strong></p>
+                        <p><strong>{FriendsCard.birthday?.slice(0, 10)}</strong></p>
+                    </div>
+                </div>
+            </div>
+            <h5 className="biography"><strong> Biografía:</strong> {FriendsCard.biography} </h5>
+        </>
     )
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 export default FriendsList

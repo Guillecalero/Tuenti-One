@@ -31,6 +31,9 @@ const ProfilePage = () => {
                         <Link to={`/${userInfo.username}/editar`}>
                             <button className="profileButton"><strong>Editar perfil</strong></button>
                         </Link>
+                        <Link to={`/${userInfo.username}/editar`}>
+                            <button className="profileButton"><strong>Amig@s</strong></button>
+                        </Link>
                     </div>
                 </div>
             </div>

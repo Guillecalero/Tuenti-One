@@ -12,7 +12,6 @@ const LoginForm = () => {
             password: ''
         }
     )
-
     const navigate = useNavigate()
 
     const { storeToken, authenticateUser } = useContext(AuthContext)
@@ -24,7 +23,6 @@ const LoginForm = () => {
             [name]: value
         })
     }
-
     const handleSubmit = e => {
         e.preventDefault()
 

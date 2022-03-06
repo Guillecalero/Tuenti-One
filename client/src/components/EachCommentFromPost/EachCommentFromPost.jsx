@@ -28,7 +28,6 @@ function EachCommentFromPost({ eachComment, postId }) {
             .catch(err => console.log(err))
     }
 
-
     return <div className="eachComment">
         <div className="commentUserInfo">
             <img src={oneUser?.imageURL} alt="profile image" />
