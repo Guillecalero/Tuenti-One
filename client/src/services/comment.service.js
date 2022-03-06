@@ -16,6 +16,10 @@ class CommentServices {
         })
     }
 
+    getOneComment(commentId) {
+        return this.axios.get(`/getOneComment/${commentId}`)
+    }
+
     addNewComment(info) {
         return this.axios.post('/neww-commentt', info)
     }

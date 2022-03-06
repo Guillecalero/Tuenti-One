@@ -9,6 +9,15 @@ router.get('/', (req, res) => {
         .catch(err => res.status(400).json(err))
 })
 
+router.get('/getOneComment/:commentId', (req, res) => {
+    const { commentId } = req.params
+
+    Comment
+        .findById(commentId)
+        .then(data => res.json(data))
+        .catch(err => console.log(err))
+})
+
 router.post('/neww-commentt', isAuthenticated, (req, res) => {
 
     const newComment = { ...req.body, user: req.payload._id }

@@ -3,6 +3,7 @@ import { Form } from "react-bootstrap"
 import posteosService from "../../services/posteos.service"
 import { PostsContext } from '../../context/posts.context'
 import uploadService from "../../services/upload.service"
+import { AuthContext } from "../../context/auth.context"
 
 const Posteos = () => {
 
@@ -13,6 +14,7 @@ const Posteos = () => {
 
     const { refreshPosts } = useContext(PostsContext)
     const [loadingImage, setLoadingImage] = useState(false)
+    const { user } = useContext(AuthContext)
 
     const handleInputChange = e => {
         const { name, value } = e.target
@@ -44,6 +46,7 @@ const Posteos = () => {
 
         posteosService
             .createOnePost(postStatus)
+            .then(({ data }) => posteosService.pushOneUserPost(user._id, data._id))
             .then(() => refreshPosts())
             .catch(err => console.log(err))
 
