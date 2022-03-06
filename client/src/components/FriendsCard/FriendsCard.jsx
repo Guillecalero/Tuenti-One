@@ -1,24 +1,34 @@
-import Card from 'react-bootstrap/Card'
-import { Link } from 'react-dom'
+import { useContext } from 'react'
 
-const FriendsCard = ({ username, _id, image_URL }) => {
+const FriendsCard = () => {
+    const { friendsCard } = useContext(
+
+        {
+            username: '',
+            nameUser: '',
+            surnameUser: '',
+            birthday: ''
+        }
+    )
+
     return (
-
-        <Card className="FriendsCard" style={{ width: '18rem' }}>
-            <Card.Image_URL variant="top" src={image_URL} />
-            <Card.Body>
-                <Card.username>{username}</Card.username>
-                <Link to={`/detalles/${_id}`}>
-                    <Card.Text>
-                        Saoko papi, saokooo...
-                    </Card.Text>
-                    <div className="d-grid gap-2">
-                        <Button variant="primary">Añadir</Button>
+        <div>
+            {friendsCard.map((friendsCard) => {
+                return (
+                    <div className="containerEditProfile">
+                        <img className="imgContainer" src={friendsCard.imageURL} alt="imagen de usuari@" />
+                        <div>
+                            <div className="containerInfo">
+                                <p><strong>@</strong> <strong>{friendsCard?.username}</strong></p>
+                                <p><strong> </strong><strong>{friendsCard?.nameUser}</strong> </p>
+                                <p><strong> </strong> <strong>{friendsCard?.surnameUser} </strong></p>
+                                <p><strong>{friendsCard.birthday?.slice(0, 10)}</strong></p>
+                            </div>
+                        </div>
                     </div>
-                </Link>
-            </Card.Body>
-        </Card >
-
+                )
+            })}
+        </div>
     )
 }
 

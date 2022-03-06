@@ -1,8 +1,11 @@
-
 const Footer = () => {
-    <>
-        <footer>Tuentione todos derechos reservad@s</footer>
-    </>
 
+    return (
+        <>
+            <footer className="footer">
+                <p>Tuentione todos los derechos reservados &copy;</p>
+            </footer>
+        </>
+    )
 }
 export default Footer

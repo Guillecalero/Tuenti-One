@@ -399,3 +399,14 @@ p, h1, h2, h3, h4, h5, h6 {
   font-size: 25px;
   border: 2px solid black;
 }
+
+/*FOOTER*/
+
+.footer {
+  background-color: #C4FEF4;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  border: 1.5px solid black;
+
+}
