@@ -138,6 +138,11 @@ p, h1, h2, h3, h4, h5, h6 {
   color: rgb(199, 199, 199);
 }
 
+.profileBodyContainer {
+  width: 85%;
+  margin: 1rem auto;
+}
+
 .loginRegister a>p,
 .loginRegister span {
   color: var(--navbar-color);
@@ -146,6 +151,45 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .dropdown-menu {
   width: 50%;
+}
+
+@media screen and (max-width: 768px) {
+  .containerEditProfile {
+    display: block;
+    text-align: center;
+  }
+
+  .containerEditProfile img {
+    border-radius: 5px;
+  }
+
+  .profileInfo {
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .profileInfo p:nth-child(4) {
+    margin-bottom: 3rem;
+  }
+
+  .biography {
+    width: 100%;
+  }
+
+  .profileBodyContainer {
+    display: block;
+    --bs-gutter-x: 0;
+    width: 100%;
+  }
+
+  .mobileProfilePage {
+    width: 100%;
+  }
+
+  .profileEditBtn {
+    right: 16px;
+    margin-top: -40px;
+  }
 }
 
 /* HOMEPAGE */
@@ -360,14 +404,45 @@ p, h1, h2, h3, h4, h5, h6 {
   font-size: 12px;
 }
 
-/* PROFILE PAGE */
+@media screen and (max-width: 768px) {
+  .homepage {
+    margin: 0;
+  }
 
-/* .profileHeader img {
-  height: 250px;
-  width: 250px;
-  object-fit: cover;
-  border-radius: 10px;
-} */
+  .postContainer {
+    width: 100%;
+  }
+
+  .postSection {
+    border-radius: 0;
+    margin-bottom: 15px;
+  }
+
+  .postEditDeleteBtn {
+    position: absolute;
+    margin-top: 2.5rem;
+    right: 12px;
+  }
+
+  .postFormBtns {
+    display: block;
+  }
+
+  .custom-file-upload {
+    width: 100%;
+    text-align: center;
+  }
+
+  .postFormBtn {
+    width: 100%;
+    margin: 0;
+  }
+
+  .dropdown-menu {
+    width: 23rem;
+    transform: translate3d(-193px, 40px, 0px) !important;
+  }
+}
 
 /* DISCOVER PAGE */
 

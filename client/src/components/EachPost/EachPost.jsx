@@ -7,6 +7,7 @@ import DropDownComment from "../DropdownComment/DropDownComment"
 import { PostsContext } from '../../context/posts.context'
 import EachCommentFromPost from "../EachCommentFromPost/EachCommentFromPost"
 import EditPostForm from "../EditPostForm/EditPostForm"
+import { useEffect } from "react"
 
 const EachPost = ({ eachPost }) => {
 
@@ -38,6 +39,14 @@ const EachPost = ({ eachPost }) => {
             .then(() => refreshPosts())
             .catch(err => console.log(err))
     }
+
+
+    useEffect(() => {
+        posteosService
+            .getOnePost(eachPost._id)
+            .then(({ data }) => data.likes.map(elm => elm === user._id ? setIsPressed(true) : setIsPressed(false)))
+            .catch(err => console.log(err))
+    })
 
     return (
         <div className="postSection" key={eachPost._id}>
@@ -74,16 +83,9 @@ const EachPost = ({ eachPost }) => {
                     {
                         !isPressed
                             ?
-                            <button className="postLikeBtn" onClick={() => {
-                                addLike()
-                                setIsPressed(true)
-                            }
-                            }><i class="fa-solid fa-thumbs-up"></i> Me gusta</button>
+                            <button className="postLikeBtn" onClick={() => addLike()}><i class="fa-solid fa-thumbs-up"></i> Me gusta</button>
                             :
-                            <button className="postDislikeBtn" onClick={() => {
-                                delLike()
-                                setIsPressed(false)
-                            }}><i class="fa-solid fa-thumbs-up"></i> Me gusta</button>
+                            <button className="postDislikeBtn" onClick={() => delLike()}><i class="fa-solid fa-thumbs-up"></i> Me gusta</button>
                     }
                     {<DropDownComment postId={eachPost._id} refreshPosts={refreshPosts} />}
                 </div>

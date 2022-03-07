@@ -1,7 +1,10 @@
+import { useContext } from "react"
 import { useEffect } from "react"
 import { useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import EachOwnedPost from "../../components/EachOwnedPost/EachOwnedPost"
+import PostForm from "../../components/PostForm/PostForm"
+import { AuthContext } from "../../context/auth.context"
 import userService from "../../services/user.service"
 
 const ProfilePage = () => {
@@ -9,6 +12,7 @@ const ProfilePage = () => {
     const { username } = useParams()
 
     const [userInfo, setUserInfo] = useState({})
+    const { user } = useContext(AuthContext)
 
     useEffect(() => {
         userService
@@ -29,12 +33,18 @@ const ProfilePage = () => {
                 </div>
                 <div className="profileEditBtn">
                     <Link to={`/${userInfo?.username}/editar`}>
-                        <button className="profileButton">Editar perfil</button>
+                        {username && username && user?.username === username && <button className="profileButton">Editar perfil</button>}
                     </Link>
                 </div>
             </div>
-            <div className="profileBodyContainer">
-                <EachOwnedPost />
+            <div className="mobileProfilePage profileBodyContainer row">
+                <div className="col-5">
+                </div>
+                <div className="mobileProfilePage col-7">
+                    <PostForm />
+                    <hr />
+                    <EachOwnedPost />
+                </div>
             </div>
         </>
     )

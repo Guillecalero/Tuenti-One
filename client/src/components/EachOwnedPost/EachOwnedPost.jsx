@@ -18,8 +18,7 @@ const EachOwnedPost = () => {
 
     return (
         <>
-            <h1>Aqui van los posts propiosssssss aaa</h1>
-            {ownedPosts.map((eachPost, idx) => <EachOwnedPostList key={idx} eachPost={eachPost} />)}
+            {ownedPosts.reverse().map((eachPost, idx) => <EachOwnedPostList key={idx} eachPost={eachPost} />)}
         </>
     )
 }
