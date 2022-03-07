@@ -12,7 +12,9 @@ const EachOwnedPost = () => {
     useEffect(() => {
         userService
             .getOneUser(username)
-            .then(({ data }) => setOwnedPosts(data.posts))
+            .then(({ data }) => {
+                setOwnedPosts(data.posts)
+            })
             .catch(err => console.log(err))
     }, [username])
 
