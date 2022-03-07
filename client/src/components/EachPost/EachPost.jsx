@@ -19,7 +19,7 @@ const EachPost = ({ eachPost }) => {
     const delPost = () => {
         posteosService
             .deleteOnePost(eachPost._id)
-            .then(() => posteosService.pullOneUserPost(user._id, eachPost._id))
+            .then(() => posteosService.pullOneUserPost(eachPost._id))
             .then(() => refreshPosts())
             .catch(err => console.log(err))
     }
@@ -29,13 +29,13 @@ const EachPost = ({ eachPost }) => {
 
     const addLike = () => {
         posteosService
-            .pushOneUserLike(eachPost._id, user._id)
+            .pushOneUserLike(eachPost._id)
             .then(() => refreshPosts())
             .catch(err => console.log(err))
     }
     const delLike = () => {
         posteosService
-            .pullOneUserLike(eachPost._id, user._id)
+            .pullOneUserLike(eachPost._id)
             .then(() => refreshPosts())
             .catch(err => console.log(err))
     }

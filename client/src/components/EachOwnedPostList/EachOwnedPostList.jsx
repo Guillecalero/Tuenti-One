@@ -1,5 +1,4 @@
-import { useEffect } from "react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import commentServices from "../../services/comment.service"
 import posteosService from "../../services/posteos.service"
 import userService from "../../services/user.service"
@@ -12,11 +11,12 @@ const EachOwnedPostList = ({ eachPost }) => {
     const [newUser, setNewUser] = useState()
 
     let info
-
+    console.log('objectId => ', eachPost);
     useEffect(() => {
         posteosService
             .getOnePost(eachPost)
             .then((allpost) => {
+                console.log('comentarios data => ', allpost);
                 info = allpost.data
                 setAllPosts(allpost.data)
                 const idsComments = allpost.data.comments
@@ -34,10 +34,11 @@ const EachOwnedPostList = ({ eachPost }) => {
             })
             .catch(err => console.log(err))
     }, [])
+
     const newInfo = { ...allPosts, comments: newComments, user: newUser }
 
     return (
-        <EachPost eachPost={newInfo} />
+        <>{newInfo.comments ? <EachPost eachPost={newInfo} /> : <h1>LOADING ...</h1>}</>
     )
 }
 

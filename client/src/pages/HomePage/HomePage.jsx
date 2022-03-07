@@ -4,7 +4,7 @@ import PostList from "../../components/PostList/PostList"
 const HomePage = () => {
 
     return (
-        <div className="homepage">
+        <div className="homepage minHeight">
             <div className="postContainer">
                 <Posteos />
                 <hr />

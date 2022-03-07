@@ -46,7 +46,7 @@ const Posteos = () => {
 
         posteosService
             .createOnePost(postStatus)
-            .then(({ data }) => posteosService.pushOneUserPost(user._id, data._id))
+            .then(({ data }) => posteosService.pushOneUserPost(data._id))
             .then(() => refreshPosts())
             .catch(err => console.log(err))
 

@@ -9,16 +9,16 @@ router.get('/', isAuthenticated, (req, res) => {
         .sort({ createdAt: -1 })
         .populate('user comments')
         .then(data => res.json(data))
-        .catch(err => res.status(400).json(err))
+        .catch(err => res.status(444).json(err))
 })
 
-router.get('/onePost/:id', (req, res) => {
+router.get('/onePost/:postId', (req, res) => {
 
-    const { id } = req.params //id del post
+    const { postId } = req.params //id del post
     Post
-        .findById(id)
+        .findById(postId)
         .then(data => res.json(data))
-        .catch(err => res.status(500).json(err))
+        .catch(err => res.status(444).json(err))
 })
 
 router.post('/neww-postt', isAuthenticated, (req, res) => {
@@ -28,7 +28,7 @@ router.post('/neww-postt', isAuthenticated, (req, res) => {
     Post
         .create(newPost)
         .then(data => res.json(data))
-        .catch(err => res.status(400).json(err))
+        .catch(err => res.status(444).json(err))
 })
 
 router.put('/:id/edit-post', (req, res) => {
@@ -37,7 +37,7 @@ router.put('/:id/edit-post', (req, res) => {
     Post
         .findByIdAndUpdate(id, req.body)
         .then(data => res.json(data))
-        .catch(err => res.status(400).json(err))
+        .catch(err => res.status(444).json(err))
 })
 
 router.put('/:id/push-comment-post', (req, res) => {
@@ -46,7 +46,7 @@ router.put('/:id/push-comment-post', (req, res) => {
     Post
         .findByIdAndUpdate(id, { $push: { comments: req.body } })
         .then(data => res.json(data))
-        .catch(err => res.status(400).json(err))
+        .catch(err => res.status(444).json(err))
 })
 
 router.put('/:postId/:commentId/pull-comment-post', (req, res) => {
@@ -55,7 +55,7 @@ router.put('/:postId/:commentId/pull-comment-post', (req, res) => {
     Post
         .findByIdAndUpdate(postId, { $pull: { comments: commentId } }, { new: true })
         .then(data => res.json(data))
-        .catch(err => res.status(400).json(err))
+        .catch(err => res.status(444).json(err))
 })
 
 router.put('/:postId/push-like', isAuthenticated, (req, res) => {
@@ -65,7 +65,7 @@ router.put('/:postId/push-like', isAuthenticated, (req, res) => {
     Post
         .findByIdAndUpdate(postId, { $push: { likes: _id } }, { new: true })
         .then(data => res.json(data))
-        .catch(err => res.status(400).json(err))
+        .catch(err => res.status(444).json(err))
 })
 
 router.put('/:postId/pull-like', isAuthenticated, (req, res) => {
@@ -75,7 +75,7 @@ router.put('/:postId/pull-like', isAuthenticated, (req, res) => {
     Post
         .findByIdAndUpdate(postId, { $pull: { likes: _id } })
         .then(data => res.json(data))
-        .catch(err => res.status(400).json(err))
+        .catch(err => res.status(444).json(err))
 })
 
 router.put('/:postId/push-post-user', isAuthenticated, (req, res) => {
@@ -85,7 +85,7 @@ router.put('/:postId/push-post-user', isAuthenticated, (req, res) => {
     User
         .findByIdAndUpdate(_id, { $push: { posts: postId } }, { new: true })
         .then(data => res.json(data))
-        .catch(err => res.status(400).json(err))
+        .catch(err => res.status(444).json(err))
 })
 
 router.put('/:postId/pull-post-user', isAuthenticated, (req, res) => {
@@ -95,7 +95,7 @@ router.put('/:postId/pull-post-user', isAuthenticated, (req, res) => {
     User
         .findByIdAndUpdate(_id, { $pull: { posts: postId } })
         .then(data => res.json(data))
-        .catch(err => res.status(400).json(err))
+        .catch(err => res.status(444).json(err))
 })
 
 router.delete('/:id/delete-post', (req, res) => {
@@ -104,7 +104,7 @@ router.delete('/:id/delete-post', (req, res) => {
     Post
         .findByIdAndDelete(id)
         .then(() => res.status(200))
-        .catch(err => res.status(400).json(err))
+        .catch(err => res.status(444).json(err))
 })
 
 module.exports = router
