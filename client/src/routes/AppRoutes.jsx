@@ -8,6 +8,7 @@ import DiscoverPage from '../pages/DiscoverPage/DiscoverPage'
 import PrivateRoute from './PrivateRoutes'
 import Footer from '../components/Footer/Footer'
 import FriendsCard from '../components/FriendsCard/FriendsCard'
+import FriendsPage from '../pages/FriendsPage/FriendsPage'
 
 const AppRoutes = () => {
     return (
@@ -21,6 +22,7 @@ const AppRoutes = () => {
             {/* <Route path="/descubrir" element={<PrivateRoute />}> */}
             <Route path='/descubrir' element={<DiscoverPage />} />
             {/* </Route> */}
+            <Route path='/perfil/amigos' element={<FriendsPage />} />
         </Routes>
     )
 }
