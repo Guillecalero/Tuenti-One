@@ -8,15 +8,13 @@ router.get('/', isAuthenticated, (req, res) => {
         .find()
         .sort({ createdAt: -1 })
         .populate('user comments')
-        .then(data => {
-            res.json(data)
-        })
+        .then(data => res.json(data))
         .catch(err => res.status(400).json(err))
 })
 
 router.get('/onePost/:id', (req, res) => {
 
-    const { id } = req.params
+    const { id } = req.params //id del post
     Post
         .findById(id)
         .then(data => res.json(data))
@@ -60,38 +58,42 @@ router.put('/:postId/:commentId/pull-comment-post', (req, res) => {
         .catch(err => res.status(400).json(err))
 })
 
-router.put('/:postId/:userId/push-like', (req, res) => {
-    const { postId, userId } = req.params
+router.put('/:postId/push-like', isAuthenticated, (req, res) => {
+    const { postId } = req.params
+    const { _id } = req.payload
 
     Post
-        .findByIdAndUpdate(postId, { $push: { likes: userId } }, { new: true })
+        .findByIdAndUpdate(postId, { $push: { likes: _id } }, { new: true })
         .then(data => res.json(data))
         .catch(err => res.status(400).json(err))
 })
 
-router.put('/:postId/:userId/pull-like', (req, res) => {
-    const { postId, userId } = req.params
+router.put('/:postId/pull-like', isAuthenticated, (req, res) => {
+    const { postId } = req.params
+    const { _id } = req.payload
 
     Post
-        .findByIdAndUpdate(postId, { $pull: { likes: userId } })
+        .findByIdAndUpdate(postId, { $pull: { likes: _id } })
         .then(data => res.json(data))
         .catch(err => res.status(400).json(err))
 })
 
-router.put('/:userId/:postId/push-post-user', (req, res) => {
-    const { postId, userId } = req.params
+router.put('/:postId/push-post-user', isAuthenticated, (req, res) => {
+    const { postId } = req.params
+    const { _id } = req.payload
 
     User
-        .findByIdAndUpdate(userId, { $push: { posts: postId } }, { new: true })
+        .findByIdAndUpdate(_id, { $push: { posts: postId } }, { new: true })
         .then(data => res.json(data))
         .catch(err => res.status(400).json(err))
 })
 
-router.put('/:userId/:postId/pull-post-user', (req, res) => {
-    const { postId, userId } = req.params
+router.put('/:postId/pull-post-user', isAuthenticated, (req, res) => {
+    const { postId } = req.params
+    const { _id } = req.payload
 
     User
-        .findByIdAndUpdate(userId, { $pull: { posts: postId } })
+        .findByIdAndUpdate(_id, { $pull: { posts: postId } })
         .then(data => res.json(data))
         .catch(err => res.status(400).json(err))
 })
@@ -101,7 +103,7 @@ router.delete('/:id/delete-post', (req, res) => {
 
     Post
         .findByIdAndDelete(id)
-        .then(() => res.json(`comentario eliminado => ${id}`))
+        .then(() => res.status(200))
         .catch(err => res.status(400).json(err))
 })
 

@@ -40,7 +40,6 @@ const EachPost = ({ eachPost }) => {
             .catch(err => console.log(err))
     }
 
-
     useEffect(() => {
         posteosService
             .getOnePost(eachPost._id)
