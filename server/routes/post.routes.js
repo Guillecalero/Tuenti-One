@@ -87,11 +87,12 @@ router.put('/:userId/:postId/push-post-user', (req, res) => {
         .catch(err => res.status(400).json(err))
 })
 
-router.put('/:userId/:postId/pull-post-user', (req, res) => {
-    const { postId, userId } = req.params
+router.put('/:postId/pull-post-user', isAuthenticated, (req, res) => {
+    const { postId } = req.params
+    const { _id } = req.payload
 
     User
-        .findByIdAndUpdate(userId, { $pull: { posts: postId } })
+        .findByIdAndUpdate(_id, { $pull: { posts: postId } })
         .then(data => res.json(data))
         .catch(err => res.status(400).json(err))
 })
