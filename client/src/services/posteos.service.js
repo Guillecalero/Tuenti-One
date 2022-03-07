@@ -48,20 +48,20 @@ class PosteosService {
         return this.axios.put(`/${postId}/${commentId}/pull-comment-post`)
     }
 
-    pushOneUserLike(postId, userId) {
-        return this.axios.put(`/${postId}/${userId}/push-like`)
+    pushOneUserLike(postId) {
+        return this.axios.put(`/${postId}/push-like`)
     }
 
-    pullOneUserLike(postId, userId) {
-        return this.axios.put(`/${postId}/${userId}/pull-like`)
+    pullOneUserLike(postId) {
+        return this.axios.put(`/${postId}/pull-like`)
     }
 
-    pushOneUserPost(userId, postId) {
-        return this.axios.put(`/${userId}/${postId}/push-post-user`)
+    pushOneUserPost(postId) {
+        return this.axios.put(`/${postId}/push-post-user`)
     }
 
-    pullOneUserPost(userId, postId) {
-        return this.axios.put(`/${userId}/${postId}/pull-post-user`)
+    pullOneUserPost(postId) {
+        return this.axios.put(`/${postId}/pull-post-user`)
     }
 }
 
