@@ -12,6 +12,8 @@ router.use('/user', require('./user.routes'))
 
 router.use('/upload', require('./upload.routes'))
 
+router.use('/private', require('./private.routes'))
+
 
 // You put the next routes here 👇
 // example: router.use("/auth", authRoutes)

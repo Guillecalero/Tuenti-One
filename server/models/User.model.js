@@ -33,6 +33,10 @@ const userSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'Post'
     }],
+    privatePosts: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Private'
+    }],
     friends: [{
       type: Schema.Types.ObjectId,
       ref: 'User'

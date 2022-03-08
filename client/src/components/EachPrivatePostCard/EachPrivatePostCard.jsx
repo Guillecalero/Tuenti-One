@@ -2,25 +2,25 @@ import { useContext, useState } from "react"
 import { Link } from 'react-router-dom'
 import { Modal } from "react-bootstrap"
 import { AuthContext } from "../../context/auth.context"
-import posteosService from "../../services/posteos.service"
+import privateService from "../../services/private.service"
 import DropDownComment from "../DropdownComment/DropDownComment"
 import { PostsContext } from '../../context/posts.context'
 import EachCommentFromPost from "../EachCommentFromPost/EachCommentFromPost"
 import EditPostForm from "../EditPostForm/EditPostForm"
 import { useEffect } from "react"
 
-const EachPost = ({ eachPost }) => {
+const EachPrivatePostCard = ({ privatePostInfo }) => {
 
     const { user } = useContext(AuthContext)
-    const { refreshPosts } = useContext(PostsContext)
+    const { refreshPrivatePosts } = useContext(PostsContext)
     const [showModal, setShowModal] = useState(false)
     const [isPressed, setIsPressed] = useState(false)
 
     const delPost = () => {
-        posteosService
-            .pullOneUserPost(eachPost._id)
-            .then(() => posteosService.deleteOnePost(eachPost._id))
-            .then(() => refreshPosts())
+        privateService
+            .pullOneUserPost(privatePostInfo._id)
+            .then(() => privateService.deleteOnePost(privatePostInfo._id))
+            .then(() => refreshPrivatePosts())
             .catch(err => console.log(err))
     }
 
@@ -28,54 +28,54 @@ const EachPost = ({ eachPost }) => {
     const handleModalOpen = () => setShowModal(true)
 
     const addLike = () => {
-        posteosService
-            .pushOneUserLike(eachPost._id)
-            .then(() => refreshPosts())
+        privateService
+            .pushOneUserLike(privatePostInfo._id)
+            .then(() => refreshPrivatePosts())
             .catch(err => console.log(err))
     }
     const delLike = () => {
-        posteosService
-            .pullOneUserLike(eachPost._id)
-            .then(() => refreshPosts())
+        privateService
+            .pullOneUserLike(privatePostInfo._id)
+            .then(() => refreshPrivatePosts())
             .catch(err => console.log(err))
     }
 
     useEffect(() => {
-        posteosService
-            .getOnePost(eachPost._id)
+        privateService
+            .getOnePost(privatePostInfo._id)
             .then(({ data }) => data.likes.map(elm => elm === user._id ? setIsPressed(true) : setIsPressed(false)))
             .catch(err => console.log(err))
     })
 
     return (
-        <div className="postSection" key={eachPost._id}>
+        <div className="postSection" key={privatePostInfo._id}>
             <div className="p-3">
                 <div className="postUserContainer">
                     <div className="postUserInfo">
-                        <img src={eachPost.user?.imageURL} alt="profile image" />
+                        <img src={privatePostInfo.user?.imageURL} alt="profile image" />
                         <div className="postUserSidetext">
-                            <Link to={`/perfil/${eachPost.user?.username}`}>
-                                <p>{eachPost.user?.nameUser} {eachPost.user?.surnameUser}</p>
+                            <Link to={`/perfil/${privatePostInfo.user?.username}`}>
+                                <p>{privatePostInfo.user?.nameUser} {privatePostInfo.user?.surnameUser}</p>
                             </Link>
-                            <p>@{eachPost.user?.username}</p>
-                            <p>{eachPost.date?.slice(0, 10)}</p>
+                            <p>@{privatePostInfo.user?.username}</p>
+                            <p>{privatePostInfo.date?.slice(0, 10)}</p>
                         </div>
                     </div>
                     <div className="postEditDeleteBtn">
                         {
-                            eachPost.user && eachPost.user && user?._id === eachPost.user._id &&
+                            privatePostInfo.user && privatePostInfo.user && user?._id === privatePostInfo.user._id &&
                             <>
-                                {eachPost.user && eachPost.user && user?._id === eachPost.user._id && <button className='btnDelEdit' onClick={delPost}>Eliminar</button>}
-                                {eachPost.user && eachPost.user && user?._id === eachPost.user._id && <button className='btnDelEdit' onClick={handleModalOpen}>Editar</button>}
+                                {privatePostInfo.user && privatePostInfo.user && user?._id === privatePostInfo.user._id && <button className='btnDelEdit' onClick={delPost}>Eliminar</button>}
+                                {privatePostInfo.user && privatePostInfo.user && user?._id === privatePostInfo.user._id && <button className='btnDelEdit' onClick={handleModalOpen}>Editar</button>}
                             </>
                         }
                     </div>
                 </div>
                 <div className="postStatus">
-                    <p>{eachPost.status}</p>
+                    <p>{privatePostInfo.status}</p>
                 </div>
             </div>
-            {eachPost.imageURL !== '' ? <img src={eachPost.imageURL} alt='post image' /> : <p></p>}
+            {privatePostInfo.imageURL !== '' ? <img src={privatePostInfo.imageURL} alt='post image' /> : <p></p>}
             <div className="p-3">
                 <hr />
                 <div className="postBtns">
@@ -86,7 +86,7 @@ const EachPost = ({ eachPost }) => {
                             :
                             <button className="postDislikeBtn" onClick={() => delLike()}><i class="fa-solid fa-thumbs-up"></i> Me gusta</button>
                     }
-                    {<DropDownComment postId={eachPost._id} refreshPosts={refreshPosts} />}
+                    {<DropDownComment postId={privatePostInfo._id} refreshPrivatePosts={refreshPrivatePosts} />}
                 </div>
                 <hr />
                 <Modal show={showModal} onHide={handleModalClose} size="lg">
@@ -94,15 +94,15 @@ const EachPost = ({ eachPost }) => {
                         <Modal.Title>Editar post</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <EditPostForm closeModal={handleModalClose} refreshPosts={refreshPosts} postId={eachPost._id} />
+                        <EditPostForm closeModal={handleModalClose} refreshPrivatePosts={refreshPrivatePosts} postId={privatePostInfo._id} />
                     </Modal.Body>
                 </Modal>
                 <div>
-                    {eachPost.comments?.map(eachComment => <EachCommentFromPost postId={eachPost._id} eachComment={eachComment} key={eachComment._id} />)}
+                    {privatePostInfo.comments?.map(eachComment => <EachCommentFromPost postId={privatePostInfo._id} eachComment={eachComment} key={eachComment._id} />)}
                 </div>
             </div>
         </div >
     )
 }
 
-export default EachPost
+export default EachPrivatePostCard

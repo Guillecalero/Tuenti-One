@@ -35,6 +35,9 @@ const ProfilePage = () => {
                     <Link to={`/${userInfo?.username}/editar`}>
                         {username && username && user?.username === username && <button className="profileButton">Editar perfil</button>}
                     </Link>
+                    <Link to={`/${userInfo?.username}/privado`}>
+                        <button className="profilePrivateButton">Zona Privada</button>
+                    </Link>
                 </div>
             </div>
             <div className="mobileProfilePage profileBodyContainer row">
