@@ -105,6 +105,8 @@ router.delete('/:id/delete-post', (req, res) => {
         .findByIdAndDelete(id)
         .then(() => res.status(200))
         .catch(err => res.status(444).json(err))
+
+    // hacer un post.findbyid para conseguir el post. Conseguiremos el array de comentarios y òr cada elem hay que recorrer el array de comment y sacar una promesa 
 })
 
 module.exports = router

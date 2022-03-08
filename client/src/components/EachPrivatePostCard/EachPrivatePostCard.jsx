@@ -5,47 +5,48 @@ import { AuthContext } from "../../context/auth.context"
 import privateService from "../../services/private.service"
 import DropDownComment from "../DropdownComment/DropDownComment"
 import { PostsContext } from '../../context/posts.context'
-import EachCommentFromPost from "../EachCommentFromPost/EachCommentFromPost"
+import EachPrivateCommentFromPost from "../EachPrivateCommentFromPost/EachPrivateCommentFromPost"
 import EditPostForm from "../EditPostForm/EditPostForm"
 import { useEffect } from "react"
+import commentServices from "../../services/comment.service"
 
 const EachPrivatePostCard = ({ privatePostInfo }) => {
 
     const { user } = useContext(AuthContext)
-    const { refreshPrivatePosts } = useContext(PostsContext)
+    const { refreshPrivatePosts, refreshPosts } = useContext(PostsContext)
     const [showModal, setShowModal] = useState(false)
     const [isPressed, setIsPressed] = useState(false)
 
     const delPost = () => {
         privateService
-            .pullOneUserPost(privatePostInfo._id)
-            .then(() => privateService.deleteOnePost(privatePostInfo._id))
+            .pullOneUserPrivatePost(privatePostInfo._id)
+            .then(() => {
+                privatePostInfo.comments.map(eachComment => commentServices.removeOneComment(eachComment._id))
+
+                return privateService.deleteOnePost(privatePostInfo._id)
+            })
             .then(() => refreshPrivatePosts())
             .catch(err => console.log(err))
+        refreshPrivatePosts()
     }
 
     const handleModalClose = () => setShowModal(false)
     const handleModalOpen = () => setShowModal(true)
 
     const addLike = () => {
+        setIsPressed(true)
         privateService
             .pushOneUserLike(privatePostInfo._id)
             .then(() => refreshPrivatePosts())
             .catch(err => console.log(err))
     }
     const delLike = () => {
+        setIsPressed(false)
         privateService
             .pullOneUserLike(privatePostInfo._id)
             .then(() => refreshPrivatePosts())
             .catch(err => console.log(err))
     }
-
-    useEffect(() => {
-        privateService
-            .getOnePost(privatePostInfo._id)
-            .then(({ data }) => data.likes.map(elm => elm === user._id ? setIsPressed(true) : setIsPressed(false)))
-            .catch(err => console.log(err))
-    })
 
     return (
         <div className="postSection" key={privatePostInfo._id}>
@@ -86,7 +87,7 @@ const EachPrivatePostCard = ({ privatePostInfo }) => {
                             :
                             <button className="postDislikeBtn" onClick={() => delLike()}><i class="fa-solid fa-thumbs-up"></i> Me gusta</button>
                     }
-                    {<DropDownComment postId={privatePostInfo._id} refreshPrivatePosts={refreshPrivatePosts} />}
+                    {<DropDownComment postId={privatePostInfo._id} refreshPosts={refreshPosts} refreshPrivatePosts={refreshPrivatePosts} />}
                 </div>
                 <hr />
                 <Modal show={showModal} onHide={handleModalClose} size="lg">
@@ -98,7 +99,7 @@ const EachPrivatePostCard = ({ privatePostInfo }) => {
                     </Modal.Body>
                 </Modal>
                 <div>
-                    {privatePostInfo.comments?.map(eachComment => <EachCommentFromPost postId={privatePostInfo._id} eachComment={eachComment} key={eachComment._id} />)}
+                    {privatePostInfo.comments?.map(eachComment => <EachPrivateCommentFromPost postId={privatePostInfo._id} eachComment={eachComment} key={eachComment._id} />)}
                 </div>
             </div>
         </div >

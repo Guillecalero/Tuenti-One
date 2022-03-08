@@ -7,7 +7,7 @@ import DropDownComment from "../DropdownComment/DropDownComment"
 import { PostsContext } from '../../context/posts.context'
 import EachCommentFromPost from "../EachCommentFromPost/EachCommentFromPost"
 import EditPostForm from "../EditPostForm/EditPostForm"
-import { useEffect } from "react"
+import commentServices from "../../services/comment.service"
 
 const EachPost = ({ eachPost }) => {
 
@@ -19,33 +19,33 @@ const EachPost = ({ eachPost }) => {
     const delPost = () => {
         posteosService
             .pullOneUserPost(eachPost._id)
-            .then(() => posteosService.deleteOnePost(eachPost._id))
+            .then(() => {
+                eachPost.comments.map(eachComment => commentServices.removeOneComment(eachComment._id))
+                return posteosService.deleteOnePost(eachPost._id)
+            })
             .then(() => refreshPosts())
             .catch(err => console.log(err))
     }
+
+    // console.log('eachpost => ', eachPost.comments)
 
     const handleModalClose = () => setShowModal(false)
     const handleModalOpen = () => setShowModal(true)
 
     const addLike = () => {
+        setIsPressed(true)
         posteosService
             .pushOneUserLike(eachPost._id)
             .then(() => refreshPosts())
             .catch(err => console.log(err))
     }
     const delLike = () => {
+        setIsPressed(false)
         posteosService
             .pullOneUserLike(eachPost._id)
             .then(() => refreshPosts())
             .catch(err => console.log(err))
     }
-
-    useEffect(() => {
-        posteosService
-            .getOnePost(eachPost._id)
-            .then(({ data }) => data.likes.map(elm => elm === user._id ? setIsPressed(true) : setIsPressed(false)))
-            .catch(err => console.log(err))
-    })
 
     return (
         <div className="postSection" key={eachPost._id}>

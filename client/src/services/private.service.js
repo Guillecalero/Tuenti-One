@@ -35,6 +35,30 @@ class PrivateService {
     pullOneUserPrivatePost(postId) {
         return this.axios.put(`/${postId}/pull-privatePost-user`)
     }
+
+    pushOneUserLike(postId) {
+        return this.axios.put(`/${postId}/push-privateLike`)
+    }
+
+    pullOneUserLike(postId) {
+        return this.axios.put(`/${postId}/pull-privateLike`)
+    }
+
+    pushNewComment(postId, info) {
+        return this.axios.put(`/${postId}/push-comment-privatePost`, info)
+    }
+
+    pullOneComment(postId, commentId) {
+        return this.axios.put(`/${postId}/${commentId}/pull-comment-privatePost`)
+    }
+
+    editOnePost(id, info) {
+        return this.axios.put(`/${id}/edit-privatePost`, info)
+    }
+
+    deleteOnePost(id) {
+        return this.axios.delete(`/${id}/delete-privatePost`)
+    }
 }
 
 const privateService = new PrivateService()

@@ -1,20 +1,26 @@
-import { useEffect } from "react"
-import { useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Form } from "react-bootstrap"
+import { PostsContext } from "../../context/posts.context"
 import posteosService from "../../services/posteos.service"
+import privateService from "../../services/private.service"
 import uploadService from "../../services/upload.service"
 
-const EditPostForm = ({ closeModal, refreshPosts, postId }) => {
+const EditPostForm = ({ closeModal, postId }) => {
 
     const [editPost, setEditPost] = useState({})
+    const [editPrivatePost, setEditPrivatePost] = useState({})
     const [loadingImage, setLoadingImage] = useState(false)
+    const { refreshPosts, refreshPrivatePosts } = useContext(PostsContext)
 
     useEffect(() => {
         posteosService
             .getOnePost(postId)
-            .then(({ data }) => {
-                setEditPost(data)
-            })
+            .then(({ data }) => setEditPost(data))
+            .catch(err => console.log(err))
+
+        privateService
+            .getPostById(postId)
+            .then(({ data }) => setEditPrivatePost(data))
             .catch(err => console.log(err))
     }, [])
 
@@ -22,6 +28,11 @@ const EditPostForm = ({ closeModal, refreshPosts, postId }) => {
         const { name, value } = e.target
         setEditPost({
             ...editPost,
+            [name]: value
+        })
+
+        setEditPrivatePost({
+            ...editPrivatePost,
             [name]: value
         })
     }
@@ -38,6 +49,7 @@ const EditPostForm = ({ closeModal, refreshPosts, postId }) => {
             .then(({ data }) => {
                 setLoadingImage(false)
                 setEditPost({ ...editPost, imageURL: data.cloudinary_url })
+                setEditPrivatePost({ ...editPrivatePost, imageURL: data.cloudinary_url })
             })
             .catch(err => console.log(err))
     }
@@ -51,6 +63,13 @@ const EditPostForm = ({ closeModal, refreshPosts, postId }) => {
                 refreshPosts()
                 closeModal()
             })
+            .catch(err => console.log(err))
+        privateService
+            .editOnePost(postId, editPrivatePost)
+            .then(() => {
+                refreshPrivatePosts()
+                closeModal()
+            })
     }
 
     return (
@@ -60,7 +79,7 @@ const EditPostForm = ({ closeModal, refreshPosts, postId }) => {
                     className="mb-3"
                     type="text"
                     placeholder="¿En qué estás pensando?"
-                    value={editPost.status}
+                    value={editPost !== null ? editPost.status : editPrivatePost.status}
                     onChange={handleInputChange}
                     name="status"
                     required

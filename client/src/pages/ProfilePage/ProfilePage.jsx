@@ -33,7 +33,7 @@ const ProfilePage = () => {
                 </div>
                 <div className="profileEditBtn">
                     <Link to={`/${userInfo?.username}/editar`}>
-                        {username && username && user?.username === username && <button className="profileButton">Editar perfil</button>}
+                        {username && username && user?.username === username && <button className="profileButton"><i class="fa-solid fa-pencil"></i></button>}
                     </Link>
                     <Link to={`/${userInfo?.username}/privado`}>
                         <button className="profilePrivateButton">Zona Privada</button>

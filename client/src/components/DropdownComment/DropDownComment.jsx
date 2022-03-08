@@ -2,8 +2,9 @@ import { useState } from "react"
 import { Dropdown, DropdownButton, Form } from "react-bootstrap"
 import commentServices from "../../services/comment.service"
 import posteosService from "../../services/posteos.service"
+import privateService from "../../services/private.service"
 
-const DropDownComment = ({ postId, refreshPosts }) => {
+const DropDownComment = ({ postId, refreshPosts, refreshPrivatePosts }) => {
 
     const [postComment, setPostComment] = useState({ text: '' })
 
@@ -21,10 +22,14 @@ const DropDownComment = ({ postId, refreshPosts }) => {
 
         commentServices
             .addNewComment(postComment)
-            .then(({ data }) => { posteosService.pushNewComment(postId, data) })
+            .then(({ data }) => {
+                posteosService.pushNewComment(postId, data)
+                privateService.pushNewComment(postId, data)
+            })
             .then(() => {
                 setPostComment({ text: '' })
                 refreshPosts()
+                refreshPrivatePosts()
             })
     }
 

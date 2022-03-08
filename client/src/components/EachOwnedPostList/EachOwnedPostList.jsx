@@ -11,12 +11,10 @@ const EachOwnedPostList = ({ eachPost }) => {
     const [newUser, setNewUser] = useState()
 
     let info
-    console.log('objectId => ', eachPost);
     useEffect(() => {
         posteosService
             .getOnePost(eachPost)
             .then((allpost) => {
-                console.log('comentarios data => ', allpost);
                 info = allpost.data
                 setAllPosts(allpost.data)
                 const idsComments = allpost.data.comments

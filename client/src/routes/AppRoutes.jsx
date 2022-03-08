@@ -6,10 +6,9 @@ import HomePage from '../pages/HomePage/HomePage'
 import ProfilePageEdit from '../pages/ProfilePageEdit/ProfilePageEdit'
 import DiscoverPage from '../pages/DiscoverPage/DiscoverPage'
 import PrivateRoute from './PrivateRoutes'
-import Footer from '../components/Footer/Footer'
-import FriendsCard from '../components/FriendsCard/FriendsCard'
 import FriendsPage from '../pages/FriendsPage/FriendsPage'
 import PrivatePage from '../pages/PrivatePage/PrivatePage'
+
 
 const AppRoutes = () => {
     return (

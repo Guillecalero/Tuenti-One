@@ -16,7 +16,6 @@ const commentSchema = new Schema(
             required: true,
             maxlength: 250
         },
-
     },
 
     {

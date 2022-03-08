@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { Form } from "react-bootstrap"
 import commentServices from "../../services/comment.service"
 
-const EditCommentForm = ({ closeModal, refreshPosts, commentId }) => {
+const EditCommentForm = ({ closeModal, refreshPosts, refreshPrivatePosts, commentId }) => {
 
     const [editComment, setEditComment] = useState({})
 
@@ -30,6 +30,7 @@ const EditCommentForm = ({ closeModal, refreshPosts, commentId }) => {
             .editOneComment(commentId, editComment)
             .then(() => {
                 refreshPosts()
+                refreshPrivatePosts()
                 closeModal()
             })
     }
