@@ -18,6 +18,8 @@ const DiscoverPage = () => {
             .then(({ data }) => console.log(data, "soy el friend"))
     }
 
+
+
     return (
 
         <div className='discoverContainer'>

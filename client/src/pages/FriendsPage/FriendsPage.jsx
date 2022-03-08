@@ -7,7 +7,8 @@ const FriendsPage = () => {
     return (
 
         <>
-            <h1>Hola soy la friendspage que pasaaa</h1>
+            <h1 className="containerFP">Amig@s</h1>
+            <hr />
             <FriendsList />
 
         </>

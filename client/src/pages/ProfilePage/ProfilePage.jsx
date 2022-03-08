@@ -38,6 +38,7 @@ const ProfilePage = () => {
                     <Link to={`/${userInfo?.username}/privado`}>
                         <button className="profilePrivateButton">Zona Privada</button>
                     </Link>
+                    <Link to={`/perfil/amigos${userInfo?.username}`}>Amig@s </Link>
                 </div>
             </div>
             <div className="mobileProfilePage profileBodyContainer row">

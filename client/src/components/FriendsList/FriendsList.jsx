@@ -18,7 +18,6 @@ const FriendsList = () => {
 
     return (
         <div>
-            <h1>friends list</h1>
             {
                 userFriends?.map((eachFriend) => <FriendsCard eachFriend={eachFriend} />)
             }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import userService from "../../services/user.service"
+import { Link } from "react-router-dom"
 
 const FriendsCard = ({ eachFriend }) => {
 
@@ -24,19 +25,20 @@ const FriendsCard = ({ eachFriend }) => {
     // </>
 
     return (
-        <div className='friendsCardContainer'>
-            <div className='friendsCardImage'>
-                <img src={userInfo.imageURL} alt="imagen de usuari@" />
+        <div className="friendsCardContainer">
+            <div className="friendsCardImage">
+                <img src={userInfo?.imageURL} alt="imagen de usuari@" />
             </div>
 
-            <div className='friendsCardElem'>
-                <p>{userInfo.nameUser} {userInfo.surnameUser} </p>
-                <button type="submit">Ver perfil</button>
+            <div className="friendsCardElem">
+                <p>{userInfo?.nameUser} {userInfo?.surnameUser} </p>
+            </div>
+
+            <div className="buttonAmigos">
+                <Link to={`/perfil/amigos${userInfo?.username}`}>Ver Perfil </Link>
             </div>
             <hr />
         </div>
-
-
     )
 }
 

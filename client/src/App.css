@@ -205,6 +205,12 @@ p, h1, h2, h3, h4, h5, h6 {
 
 /*PROFILES PAGES*/
 
+.containerFP {
+
+  display: flex;
+  justify-content: center;
+}
+
 .friendsCardContainer {
   display: flex;
   flex-wrap: wrap;
@@ -219,11 +225,14 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .friendsCardElem {
   display: flex;
-  width: 20rem;
+  width: auto;
   border: 1.5px solid black;
   margin: 1rem 2rem;
   box-shadow: 5px 5px 10px var(--main-color-tuentione);
 }
+
+
+.buttonAmigos {}
 
 /* HOMEPAGE */
 
