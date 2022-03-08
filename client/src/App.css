@@ -14,6 +14,12 @@
 
 body {
   background-color: #f0f2f5;
+  /* #E78F8E */
+  /* #FF9FB2 */
+  /* #D66BA0 */
+  /* #F4ACB7 
+  #FFCAD4 */
+  /* #EAC9C1 */
 }
 
 a {
@@ -196,6 +202,28 @@ p, h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/*PROFILES PAGES*/
+
+.friendsCardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  color: black;
+}
+
+.friendsCardImage {
+  width: 100%;
+  object-fit: cover;
+}
+
+.friendsCardElem {
+  display: flex;
+  width: 20rem;
+  border: 1.5px solid black;
+  margin: 1rem 2rem;
+  box-shadow: 5px 5px 10px var(--main-color-tuentione);
+}
+
 /* HOMEPAGE */
 
 .homepage {
@@ -366,7 +394,7 @@ p, h1, h2, h3, h4, h5, h6 {
   outline: none !important;
 }
 
-.commentSection {}
+/* .commentSection {} */
 
 .eachComment {
   padding: 8px 20px;
@@ -487,5 +515,4 @@ p, h1, h2, h3, h4, h5, h6 {
   justify-content: center;
   text-align: center;
   border: 1.5px solid black;
-
 }

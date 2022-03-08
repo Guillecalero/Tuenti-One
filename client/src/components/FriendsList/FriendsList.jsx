@@ -1,34 +1,27 @@
-import { useContext } from 'react'
+import { useEffect, useState, useContext } from "react"
+import userService from "../../services/user.service"
+import FriendsCard from "../FriendsCard/FriendsCard"
+import { AuthContext } from "../../context/auth.context"
+
 
 const FriendsList = () => {
-    const { Friends } = (
 
-        {
-            username: '',
-            nameUser: '',
-            surnameUser: '',
-            birthday: ''
-        }
-    )
+    const { user } = useContext(AuthContext)
+    const [userFriends, setUserFriends] = useState([])
 
+    useEffect(() => {
+        userService
+            .getOneUserById(user?._id)
+            .then(({ data }) => setUserFriends(data.friends))
+            .catch(err => console.log(err))
+    }, [user])
 
     return (
         <div>
-            {FriendsList.map((friendsCard) => {
-                return (
-                    <div className="containerEditProfile">
-                        <img className="imgContainer" src={friendsCard.imageURL} alt="imagen de usuari@" />
-                        <div>
-                            <div className="containerInfo">
-                                <p><strong>@</strong> <strong>{friendsCard?.username}</strong></p>
-                                <p><strong> </strong><strong>{friendsCard?.nameUser}</strong> </p>
-                                <p><strong> </strong> <strong>{friendsCard?.surnameUser} </strong></p>
-                                <p><strong>{friendsCard.birthday?.slice(0, 10)}</strong></p>
-                            </div>
-                        </div>
-                    </div>
-                )
-            })}
+            <h1>friends list</h1>
+            {
+                userFriends?.map((eachFriend) => <FriendsCard eachFriend={eachFriend} />)
+            }
         </div>
     )
 }

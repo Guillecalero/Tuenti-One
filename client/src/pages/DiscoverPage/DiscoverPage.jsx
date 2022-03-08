@@ -1,4 +1,3 @@
-import { AuthContext } from '../../context/auth.context'
 import { useState, useEffect } from 'react'
 import userService from "../../services/user.service"
 
@@ -13,6 +12,12 @@ const DiscoverPage = () => {
             .catch(err => console.log(err))
     }, [])
 
+    const addFriend = (eachUser_id) => {
+        userService
+            .addFriend(eachUser_id)
+            .then(({ data }) => console.log(data, "soy el friend"))
+    }
+
     return (
 
         <div className='discoverContainer'>
@@ -23,7 +28,9 @@ const DiscoverPage = () => {
                         <img src={eachUser.imageURL} alt="imagen de usuari@" />
                         <div className='discoverSidetext'>
                             <p>{eachUser.nameUser} {eachUser.surnameUser} </p>
-                            <button>Añadir</button>
+
+                            {/* TODO add onClick que llame a addFriend pasandole eachUser._id */}
+                            <button onClick={() => addFriend(eachUser._id)}>Añadir</button>
                         </div>
                         <hr />
 

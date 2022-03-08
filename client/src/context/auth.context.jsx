@@ -2,7 +2,6 @@ import React, { createContext, useState } from 'react'
 import { useEffect } from 'react'
 import authService from '../services/auth.service'
 
-
 const AuthContext = createContext()
 
 function AuthProviderWrapper(props) {

@@ -45,6 +45,15 @@ const ProfilePage = () => {
                     <hr />
                     <EachOwnedPost />
                 </div>
+
+                {/* 
+                TODO pasarle a friends card EACH de los friends
+                {userInfo.friends.length > 0 &&
+                    userInfo.friends.map(friend => {
+                        <FriendsCard friend={friend} key={friend._id} />
+                    })
+                } */}
+
             </div>
         </>
     )
